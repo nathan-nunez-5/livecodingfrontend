@@ -9,9 +9,9 @@
 		<!-- <p> <%= data_transcript %> <%= data_value %> this isn't that interesting... </p> --> 
 		<form id="user-program" method="POST" action="/testing">
 			<label for="user_program_code">Program Code</label>
-			<input type="text" name="user_program_code" value="<%= up.code%>">
+			<textarea name="user_program_code" cols="80" rows="10" value="<%= up.code%>"></textarea>
 			<label for="user_program_examples">Program Examples</label>
-			<input type="text" name="user_program_examples" value="<%= up.examples%>">
+			<textarea name="user_program_exanples" cols="80" rows="10" value="<%= up.code%>"></textarea>
 			<input type=submit value="save"/>
 		</form>
 	</body>
