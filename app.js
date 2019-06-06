@@ -13,6 +13,14 @@ const hostname = '134.209.219.236';
 //var user_program_examples = 'f(1) = 2';
 
 app.listen(port);
+
+var mkdirp = require('mkdirp');
+mkdirp('tmp', function(err) { 
+
+    // path exists unless there was an error
+
+});
+
 console.log('now listening to port ' + port);
 
 app.use('/assets', express.static('assets'));
@@ -35,11 +43,11 @@ app.post('/testing', urlencodedParser, function(request, response){
 	console.log('request(post) was made: ' + request.url);
 	var up_code = request.body.user_program_code;
 	var up_examples = request.body.user_program_examples;
-	fs.writeFile('code.txt', up_code, (err) => {
+	fs.writeFile('tmp/code.txt', up_code, (err) => {
 		if (err) throw err;
 		console.log('code.txt has been saved');
 	});
-	fs.writeFile('examples.txt', up_examples, (err) => {
+	fs.writeFile('tmp/examples.txt', up_examples, (err) => {
 		if (err) throw err;
 		console.log('examples.txt has been saved');
 
