@@ -7,7 +7,7 @@ var app = express();
 var urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 const port = 80;
-const hostname = '134.209.219.236'; 
+//const hostname = '134.209.219.236'; 
 
 //var user_program_code = 'function f(x){ return x; }';
 //var user_program_examples = 'f(1) = 2';
@@ -15,7 +15,7 @@ const hostname = '134.209.219.236';
 app.listen(port);
 
 var mkdirp = require('mkdirp');
-mkdirp('tmp', function(err) { 
+mkdirp('tmp', function(err) {
 
     // path exists unless there was an error
 
@@ -53,5 +53,3 @@ app.post('/testing', urlencodedParser, function(request, response){
 
 	});
 });
-
-
