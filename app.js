@@ -1,3 +1,5 @@
+'use babel';
+
 var express = require('express');
 var http = require('http');
 var fs = require('fs');
@@ -7,10 +9,7 @@ var app = express();
 var urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 const port = 80;
-//const hostname = '134.209.219.236'; 
-
-//var user_program_code = 'function f(x){ return x; }';
-//var user_program_examples = 'f(1) = 2';
+//const hostname = '134.209.219.236';
 
 app.listen(port);
 
@@ -52,4 +51,6 @@ app.post('/testing', urlencodedParser, function(request, response){
 		console.log('examples.txt has been saved');
 
 	});
+	response.render('testing', {up: request.query, data_transcript: 'this is some testing value: ', data_value: 42});
+
 });
