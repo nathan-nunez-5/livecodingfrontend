@@ -36,6 +36,11 @@ app.get('/testing', function(request, response){
 
 });
 
+var backendFxns = require('live-backend-nfn5')
+
+var reeval = backendFxns.reeval
+var updateCodeEvalJS= backendFxns.updateCodeEvalJS
+
 app.post('/testing', urlencodedParser, function(request, response){
 	console.log('request(post) was made: ' + request.url);
 	var up_code = request.body.user_program_code;
@@ -49,6 +54,10 @@ app.post('/testing', urlencodedParser, function(request, response){
 		console.log('examples.txt has been saved');
 
 	});
-	//response.render('testing', {up: request.query, data_transcript: 'this is some testing value: ', data_value: 42});
+	var update = updateCodeEvalJS(up_code, up_examples, './tmp/newcode.txt')
+	console.log(update)
+	console.log(update.newCode)
+	console.log(update.newExamples)
+	response.render('testing', {up: request.query, ne: update.newExamples});
 
 });
