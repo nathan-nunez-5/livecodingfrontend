@@ -49,6 +49,6 @@ app.post('/testing', urlencodedParser, function(request, response){
 		console.log('examples.txt has been saved');
 
 	});
-	response.render('testing', {up: request.query, data_transcript: 'this is some testing value: ', data_value: 42});
+	//response.render('testing', {up: request.query, data_transcript: 'this is some testing value: ', data_value: 42});
 
 });
