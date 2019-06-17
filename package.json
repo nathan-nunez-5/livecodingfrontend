@@ -10,9 +10,9 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.19.0",
-    "ejs": "^2.6.1",
-    "express": "^4.17.0",
-    "live-backend-nfn5": "^1.0.1",
+    "ejs": "^2.6.2",
+    "express": "^4.17.1",
+    "live-backend-nfn5": "^1.0.2",
     "mkdirp": "^0.5.1"
   }
 }
