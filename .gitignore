@@ -88,3 +88,7 @@ typings/
 
 # DynamoDB Local files
 .dynamodb/
+
+# Code + examples
+code.js
+code.js.examples

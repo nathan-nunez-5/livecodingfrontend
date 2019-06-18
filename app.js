@@ -11,6 +11,7 @@ const port = 80
 
 app.listen(port)
 
+//read up on this
 var mkdirp = require('mkdirp')
 mkdirp('tmp', function(err) {
 
@@ -45,7 +46,7 @@ app.get('/testing', function(request, response){
 	// }
 	var up = {
 		code: start_code,
-		examples: start_examples
+		examples: start_examples,
 	}
 	response.render('testing', {up: up});
 	console.log(up)
@@ -53,26 +54,34 @@ app.get('/testing', function(request, response){
 })
 
 var backendFxns = require('live-backend-nfn5')
-var reeval = backendFxns.reeval
-var updateCodeEvalJS= backendFxns.updateCodeEvalJS
+var parseExamples = backendFxns.parseExamples
+var writeExamples = backendFxns.writeExamples
+var reeval = backendFxns.reeval //dont think this works tbh
+//var updateCodeEvalJS = backendFxns.updateCodeEvalJS
 
 app.post('/testing', urlencodedParser, function(request, response){
-	console.log('request(post) was made: ' + request.url);
-	var up_code = request.body.user_program_code;
-	var up_examples = request.body.user_program_examples;
-	fs.writeFile('tmp/code.txt', up_code, (err) => {
-		if (err) throw err;
-		console.log('code.txt has been saved');
-	});
-	fs.writeFile('tmp/examples.txt', up_examples, (err) => {
-		if (err) throw err;
-		console.log('examples.txt has been saved');
+	console.log('request (post) was made: ' + request.url);
+	//console.log(request.body)
 
-	});
-	var update = updateCodeEvalJS(up_code, up_examples, './tmp/newcode.txt')
-	console.log(update)
-	console.log(update.newCode)
-	console.log(update.newExamples)
-	response.render('testing', {up: request.query, ne: update.newExamples});
+	//grab text bodies
+	var up_code = request.body.up_code;
+	var up_examples = request.body.up_examples;
+
+	//savefiles in hidden folder tmp
+	fs.writeFileSync('tmp/code.js', up_code)
+	fs.writeFileSync('tmp/code.js.examples', up_examples)
+	console.log(up_code)
+	console.log(up_examples)
+
+	//the atom interface we need trim before we parse
+	//write parseExamples
+	var newExamples = writeExamples(reeval(up_code, parseExamples(up_examples)))
+	var up = {
+		code: up_code,
+		examples: newExamples 
+	}
+
+
+	response.render('testing', {up: up});
 
 });
