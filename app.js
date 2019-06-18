@@ -49,7 +49,7 @@ app.get('/testing', function(request, response){
 		examples: start_examples,
 	}
 	response.render('testing', {up: up});
-	console.log(up)
+	// console.log(up)
 
 })
 
@@ -70,15 +70,15 @@ app.post('/testing', urlencodedParser, function(request, response){
 	//savefiles in hidden folder tmp
 	fs.writeFileSync('tmp/code.js', up_code)
 	fs.writeFileSync('tmp/code.js.examples', up_examples)
-	console.log(up_code)
-	console.log(up_examples)
+	// console.log(up_code)
+	// console.log(up_examples)
 
 	//the atom interface we need trim before we parse
 	//write parseExamples
 	var newExamples = writeExamples(reeval(up_code, parseExamples(up_examples)))
 	var up = {
 		code: up_code,
-		examples: newExamples 
+		examples: newExamples
 	}
 
 
