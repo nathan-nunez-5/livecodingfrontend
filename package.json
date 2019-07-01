@@ -12,7 +12,7 @@
     "body-parser": "^1.19.0",
     "ejs": "^2.6.2",
     "express": "^4.17.1",
-    "live-backend-nfn5": "^1.0.3",
+    "live-backend-nfn5": "^1.0.6",
     "mkdirp": "^0.5.1"
   }
 }

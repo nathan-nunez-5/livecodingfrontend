@@ -2,9 +2,19 @@ var express = require('express')
 var http = require('http')
 var fs = require('fs')
 var bodyParser = require('body-parser')
+
+//var cookieParser = require('cookie-parser');
+
 var app = express()
+//app.use(cookieParser());
 
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
+
+//cookie grabbing
+// app.get('/cookie',function(req, res){
+//      res.cookie(cookie_name , 'cookie_value').send('Cookie is set');
+// });
+
 
 const port = 80
 //const hostname = '134.209.219.236';
@@ -56,8 +66,8 @@ app.get('/testing', function(request, response){
 var backendFxns = require('live-backend-nfn5')
 var parseExamples = backendFxns.parseExamples
 var writeExamples = backendFxns.writeExamples
-var reeval = backendFxns.reeval //dont think this works tbh
-//var updateCodeEvalJS = backendFxns.updateCodeEvalJS
+var reeval = backendFxns.reeval
+var updateCodeEvalJS = backendFxns.updateCodeEvalJS
 
 app.post('/testing', urlencodedParser, function(request, response){
 	console.log('request (post) was made: ' + request.url);
@@ -75,11 +85,29 @@ app.post('/testing', urlencodedParser, function(request, response){
 
 	//the atom interface we need trim before we parse
 	//write parseExamples
-	var newExamples = writeExamples(reeval(up_code, parseExamples(up_examples)))
-	var up = {
-		code: up_code,
-		examples: newExamples
-	}
+	//var newExamples = writeExamples(reeval(up_code, parseExamples(up_examples)))
+	// var up = {
+	// 	code: up_code,
+	// 	examples: newExamples
+	// }
+
+  var path = 'tmp/code.js.sl'
+  var res = updateCodeEvalJS(up_code, parseExamples(up_examples), path)
+
+    if (res.newCode != null && res.newCode != up_code) {
+      var up = {
+    		code: res.newCode,
+    		examples: up_examples
+    	}
+      //setCode(pbeFile, res.newCode);
+    }
+    if (res.newExamples != null) {
+      var up = {
+    		code: up_code,
+    		examples: writeExamples(res.newExamples)
+    	}
+      //setExamples(res.newExamples);
+    }
 
 
 	response.render('testing', {up: up});
