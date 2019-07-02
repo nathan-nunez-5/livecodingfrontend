@@ -17,9 +17,8 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 
 const port = 80
-//const hostname = '134.209.219.236';
 
-app.listen(port)
+app.listen(port);
 
 //read up on this
 var mkdirp = require('mkdirp')

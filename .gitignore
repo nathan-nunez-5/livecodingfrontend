@@ -71,6 +71,8 @@ typings/
 # parcel-bundler cache (https://parceljs.org/)
 .cache
 
+
+
 # next.js build output
 .next
 
@@ -92,3 +94,6 @@ typings/
 # Code + examples
 code.js
 code.js.examples
+
+# no hangup file output
+nohup.out
