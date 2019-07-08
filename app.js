@@ -91,6 +91,7 @@ app.post('/testing', urlencodedParser, function(request, response){
 	// }
 
   var path = 'tmp/code.js.sl'
+	console.log("begin: updateCodeEvalJS")
   var res = updateCodeEvalJS(up_code, parseExamples(up_examples), path)
 
     if (res.newCode != null && res.newCode != up_code) {
