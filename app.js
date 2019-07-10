@@ -47,11 +47,8 @@ app.use(function (request, response, next){
 			//path exists unless it don't
 		})
 	}
-
-
 	next();
 });
-
 app.use('/assets', express.static('assets'))
 
 app.get('/', function(request, response){
