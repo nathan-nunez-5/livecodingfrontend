@@ -2,7 +2,7 @@ var express = require('express')
 var http = require('http')
 var fs = require('fs')
 var bodyParser = require('body-parser')
-var cookieParser = require('cookie-parser');
+var cookieParser = require('cookie-parser')
 var app = express()
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
@@ -53,7 +53,7 @@ app.use('/assets', express.static('assets'))
 
 app.get('/', function(request, response){
 	console.log('request was made: ' + request.url)
-	response.send('hi team! this is the homepage')
+	//response.render('index.html')
 })
 
 app.get('/testing', function(request, response){
