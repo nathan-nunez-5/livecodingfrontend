@@ -14,7 +14,7 @@
     "cookie-parser": "^1.4.4",
     "ejs": "^2.6.2",
     "express": "^4.17.1",
-    "live-backend-nfn5": "^1.0.10",
+    "live-backend-nfn5": "^1.0.11",
     "mkdirp": "^0.5.1"
   }
 }

@@ -29,12 +29,12 @@ app.use(function (request, response, next) {
     var randomNumber = Math.random().toString();
     randomNumber = randomNumber.substring(2,randomNumber.length);
     response.cookie('uCookie',randomNumber);
-    console.log('cookie created successfully');
+    //console.log('cookie created successfully');
   }
   else
   {
     // yes, cookie was already present
-    console.log('cookie exists', cookie);
+    //console.log('cookie exists', cookie);
   }
   next(); // <-- important!
 });
@@ -52,12 +52,11 @@ app.use(function (request, response, next){
 app.use('/assets', express.static('assets'))
 
 app.get('/', function(request, response){
-	console.log('request was made: ' + request.url)
 	//response.render('index.html')
 })
 
 app.get('/testing', function(request, response){
-	console.log('request was made: ' + request.url)
+	//console.log('request was made: ' + request.url)
 	var start_code = ''
 	var start_examples = ''
 	// var items = fs.readdirSync('./tmp')
@@ -75,7 +74,6 @@ app.get('/testing', function(request, response){
 		examples: start_examples,
 	}
 	response.render('testing', {up: up});
-	// console.log(up)
 
 })
 
@@ -86,8 +84,7 @@ var reeval = backendFxns.reeval
 var updateCodeEvalJS = backendFxns.updateCodeEvalJS
 
 app.post('/testing', urlencodedParser, function(request, response){
-	console.log('request (post) was made: ' + request.url);
-	//console.log(request.body)
+	//console.log('request (post) was made: ' + request.url);
 
 	//grab text bodies
 	var up_code = request.body.up_code;
@@ -95,7 +92,6 @@ app.post('/testing', urlencodedParser, function(request, response){
 
 	//savefiles in hidden folder tmp
 	var userFolder = 'tmp/' + request.cookies.uCookie + '/'
-	console.log('this folder' + userFolder)
 	fs.writeFileSync(userFolder + 'code.js', up_code)
 	fs.writeFileSync(userFolder + 'code.js.examples', up_examples)
 	// console.log(up_code)
@@ -112,14 +108,23 @@ app.post('/testing', urlencodedParser, function(request, response){
   var path = userFolder +'code.js.sl'
 	//console.log("begin: updateCodeEvalJS")
   var res = updateCodeEvalJS(up_code, parseExamples(up_examples), path)
-
-    if (res.newCode != null && res.newCode != up_code) {
+    //came out of pbe and cvc4 couldn't generate an appropriate function
+    if (res.newExamples === null && res.newCode == up_code){
+      var up = {
+        code: up_code,
+        examples: up_examples,
+        pbeStatus: "pbe synthesis failed, please try new examples"
+      }
+    }
+    //pbe
+    if (res.newCode !== null && res.newCode != up_code) {
       var up = {
     		code: res.newCode,
     		examples: up_examples
     	}
       //setCode(pbeFile, res.newCode);
     }
+    //reeval
     if (res.newExamples != null) {
       var up = {
     		code: up_code,
