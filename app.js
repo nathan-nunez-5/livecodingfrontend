@@ -73,7 +73,7 @@ app.get('/testing', function(request, response){
 		code: start_code,
 		examples: start_examples,
 	}
-	response.render('testing', {up: up});
+	response.render('testing2', {up: up});
 
 })
 
@@ -84,12 +84,11 @@ var reeval = backendFxns.reeval
 var updateCodeEvalJS = backendFxns.updateCodeEvalJS
 
 app.post('/testing', urlencodedParser, function(request, response){
-	//console.log('request (post) was made: ' + request.url);
-
+	console.log('request (post) was made: ' + request.url);
+  var parsedProgram = JSON.parse(request.body.user_program)
 	//grab text bodies
-	var up_code = request.body.up_code;
-	var up_examples = request.body.up_examples;
-
+	var up_code = parsedProgram.up_code
+	var up_examples = parsedProgram.up_examples
 	//savefiles in hidden folder tmp
 	var userFolder = 'tmp/' + request.cookies.uCookie + '/'
 	fs.writeFileSync(userFolder + 'code.js', up_code)
@@ -118,6 +117,7 @@ app.post('/testing', urlencodedParser, function(request, response){
     }
     //pbe
     if (res.newCode !== null && res.newCode != up_code) {
+      console.log('pbe')
       var up = {
     		code: res.newCode,
     		examples: up_examples
@@ -126,6 +126,7 @@ app.post('/testing', urlencodedParser, function(request, response){
     }
     //reeval
     if (res.newExamples != null) {
+      console.log('reeval')
       var up = {
     		code: up_code,
     		examples: writeExamples(res.newExamples)
@@ -134,6 +135,6 @@ app.post('/testing', urlencodedParser, function(request, response){
     }
 
 
-	response.render('testing', {up: up});
+	response.render('testing2', {up: up});
 
 });

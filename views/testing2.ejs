@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link href="/assets/styles.css" rel="stylesheet" type="text/css" />
+		<script src="/assets/main.js"></script>
+		<script src="/assets/post.js"></script>
+	</head>
+	<body>
+		<h1> Welcome to Live Coding Interface </h1>
+		<p> In the left text-box you can enter javascript code. In the right text-box you can enter javascript examples. </p>
+		<textarea id="up_code" cols="80" rows="10" oninput="sendPost()"><%=up.code%></textarea>
+		<textarea id="up_examples" cols="80" rows="10" onchange="sendPost()"><%=up.examples%></textarea>
+		<!--<input type=submit value="update"/>-->
+		<p> <%=up.pbeStatus%> </p>
+	</body>
+</html>
