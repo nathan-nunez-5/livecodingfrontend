@@ -13,7 +13,7 @@ function sendPost(){
     up_code: code,
     up_examples: examples
   }
-  var path = '/testing'
+  var path = '/'
   post(path, params)
   lock = false
 }

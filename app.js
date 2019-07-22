@@ -52,10 +52,6 @@ app.use(function (request, response, next){
 app.use('/assets', express.static('assets'))
 
 app.get('/', function(request, response){
-	//response.render('index.html')
-})
-
-app.get('/testing', function(request, response){
 	//console.log('request was made: ' + request.url)
 	var start_code = ''
 	var start_examples = ''
@@ -73,7 +69,7 @@ app.get('/testing', function(request, response){
 		code: start_code,
 		examples: start_examples,
 	}
-	response.render('testing', {up: up});
+	response.render('testing2', {up: up});
 
 })
 
@@ -83,7 +79,7 @@ var writeExamples = backendFxns.writeExamples
 var reeval = backendFxns.reeval
 var updateCodeEvalJS = backendFxns.updateCodeEvalJS
 
-app.post('/testing', urlencodedParser, function(request, response){
+app.post('/', urlencodedParser, function(request, response){
 	console.log('request (post) was made: ' + request.url);
   // var parsedProgram = JSON.parse(request.body.user_program)
 	// //grab text bodies
@@ -138,6 +134,6 @@ app.post('/testing', urlencodedParser, function(request, response){
     }
 
 
-	response.render('testing', {up: up});
+	response.render('testing2', {up: up});
 
 });
