@@ -10,7 +10,6 @@ const port = 80
 app.listen(port);
 //console.log('now listening to port ' + port)
 
-//read up on this
 var mkdirp = require('mkdirp')
 mkdirp('tmp', function(err) {
     // path exists unless there was an error
@@ -36,7 +35,7 @@ app.use(function (request, response, next) {
     // yes, cookie was already present
     //console.log('cookie exists', cookie);
   }
-  next(); // <-- important!
+  next(); // <-- important!You can achieve this by using ajax and history.pushState( ) function.
 });
 
 // let static middleware do its job
@@ -52,7 +51,6 @@ app.use(function (request, response, next){
 app.use('/assets', express.static('assets'))
 
 app.get('/', function(request, response){
-	//console.log('request was made: ' + request.url)
 	var start_code = ''
 	var start_examples = ''
 	// var items = fs.readdirSync('./tmp')
@@ -81,13 +79,14 @@ var updateCodeEvalJS = backendFxns.updateCodeEvalJS
 
 app.post('/', urlencodedParser, function(request, response){
 	console.log('request (post) was made: ' + request.url);
-  // var parsedProgram = JSON.parse(request.body.user_program)
-	// //grab text bodies
-	// var up_code = parsedProgram.up_code
-	// var up_examples = parsedProgram.up_examples
+  console.log(request.body.user_program)
+  var parsedProgram = JSON.parse(request.body.user_program)
+	//grab text bodies
+	var up_code = parsedProgram.up_code
+	var up_examples = parsedProgram.up_examples
 
-  var up_code = request.body.up_code
-  var up_examples = request.body.up_examples
+  // var up_code = request.body.up_code
+  // var up_examples = request.body.up_examples
 	//savefiles in hidden folder tmp
 	var userFolder = 'tmp/' + request.cookies.uCookie + '/'
 	fs.writeFileSync(userFolder + 'code.js', up_code)
@@ -105,6 +104,7 @@ app.post('/', urlencodedParser, function(request, response){
 
   var path = userFolder +'code.js.sl'
 	//console.log("begin: updateCodeEvalJS")
+  console.log("before reeval" + up_code)
   var res = updateCodeEvalJS(up_code, parseExamples(up_examples), path)
     //came out of pbe and cvc4 couldn't generate an appropriate function
     if (res.newExamples === null && res.newCode == up_code){
@@ -133,7 +133,7 @@ app.post('/', urlencodedParser, function(request, response){
       //setExamples(res.newExamples);
     }
 
-
-	response.render('testing2', {up: up});
+    console.log("rhis is", up)
+	response.send(up);
 
 });

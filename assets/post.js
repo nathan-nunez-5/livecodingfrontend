@@ -33,6 +33,14 @@ function ajaxCall(path, params, method = 'POST'){
   var xhr = new XMLHttpRequest()
   xhr.open(method, path)
   xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
-  console.log(params)
-  xhr.send('user_program=' + JSON.stringify(params))
+  console.log(JSON.stringify(params))
+
+  xhr.onreadystatechange = function() { // Call a function when the state changes.
+    if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+      var up = JSON.parse(xhr.responseText)
+      document.getElementById('up_code').value = up.code
+      document.getElementById('up_examples').value = up.examples
+    }
+  }
+  xhr.send("user_program="+JSON.stringify(params))
 }
