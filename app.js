@@ -134,3 +134,63 @@ app.post('/', urlencodedParser, function(request, response){
 	response.send(up);
 
 });
+//
+// app.post('/', urlencodedParser, function(request, response){
+// 	console.log('request (post) was made: ' + request.url);
+//   var parsedProgram = JSON.parse(request.body.user_program)
+// 	//grab text bodies
+// 	var up_code = parsedProgram.up_code
+// 	var up_examples = parsedProgram.up_examples
+//
+//   // var up_code = request.body.up_code
+//   // var up_examples = request.body.up_examples
+// 	//savefiles in hidden folder tmp
+// 	var userFolder = 'tmp/' + request.cookies.uCookie + '/'
+// 	fs.writeFileSync(userFolder + 'code.js', up_code)
+// 	fs.writeFileSync(userFolder + 'code.js.examples', up_examples)
+// 	// console.log(up_code)
+// 	// console.log(up_examples)
+//
+// 	//the atom interface we need trim before we parse
+// 	//write parseExamples
+// 	//var newExamples = writeExamples(reeval(up_code, parseExamples(up_examples)))
+// 	// var up = {
+// 	// 	code: up_code,
+// 	// 	examples: newExamples
+// 	// }
+//
+//   var path = userFolder +'code.js.sl'
+// 	//console.log("begin: updateCodeEvalJS")
+//   console.log("before reeval" + up_code)
+//   var res = updateCodeEvalJS(up_code, parseExamples(up_examples), path)
+//     //came out of pbe and cvc4 couldn't generate an appropriate function
+//     if (res.newExamples === null && res.newCode == up_code){
+//       var up = {
+//         code: up_code,
+//         examples: up_examples,
+//         pbeStatus: "pbe synthesis failed, please try new examples"
+//       }
+//     }
+//     //pbe
+//     if (res.newCode !== null && res.newCode != up_code) {
+//       console.log('pbe')
+//       var up = {
+//     		code: res.newCode,
+//     		examples: up_examples
+//     	}
+//       //setCode(pbeFile, res.newCode);
+//     }
+//     //reeval
+//     if (res.newExamples != null) {
+//       console.log('reeval')
+//       var up = {
+//     		code: up_code,
+//     		examples: writeExamples(res.newExamples)
+//     	}
+//       //setExamples(res.newExamples);
+//     }
+// 	response.send(up);
+//
+// });
+//
+//
