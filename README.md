@@ -37,3 +37,23 @@ now clone the repo and be sure to update npm packages
 ```
  npm update
 ```
+
+# TODOs
+
+progress:
+- [x] live is running on server
+- [x] cookies added
+- [x] server function
+- [x] nohup server up
+
+
+TODOS:
+- [ ] fix that when you have an undefined example it takes two loads for it to get back into being live
+- [ ] codemirror integration
+- [ ] loading code from files in server
+- [ ] integrate griffins ideas into examples
+- [ ] seperate interface helpers code out of app.js
+- [ ] sort TODOS
+
+Long term TODOS:
+- [ ] lorem
