@@ -1,0 +1,1 @@
+Construct a function with input out pairs 0->f->1 and 2->f->3.

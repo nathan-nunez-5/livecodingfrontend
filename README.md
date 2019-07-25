@@ -45,15 +45,26 @@ progress:
 - [x] cookies added
 - [x] server function
 - [x] nohup server up
+- [x] open link in new window in survey
+- [x] fix middle question in survey
+- [x] loading code from files in server
+
 
 
 TODOS:
 - [ ] fix that when you have an undefined example it takes two loads for it to get back into being live
 - [ ] codemirror integration
-- [ ] loading code from files in server
 - [ ] integrate griffins ideas into examples
 - [ ] seperate interface helpers code out of app.js
 - [ ] sort TODOS
+- [ ] look into lines change in example window
+- [ ] synthesis fires every time its well formatted
+- [ ] something to think about - get function to be made from just up_examples
+- [ ] get some message when synthesis engine couldn't do it
+- [ ] record js evaluations
+- [ ] easy pbe
+- [ ] clean up code
+- [ ] clean up how code is saved onto tmp folder
 
 Long term TODOS:
 - [ ] lorem

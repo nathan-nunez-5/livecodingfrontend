@@ -19,14 +19,14 @@
 			<h1> Welcome to Live Coding Interface </h1>
 		</div>
 		<div id="description">
-			<p> </p>
+			<p> <%= data.description%> </p>
 		</div>
 		<div id="status_bar"><div>
 			<div id="code_space" class="split left">
-				<textarea id="up_code" cols="80" rows="10"></textarea>
+				<textarea id="up_code" cols="80" rows="10"><%=data.code%></textarea>
 			</div>
 			<div id="examples_space" zclass="split right">
-				<textarea id="up_examples" cols="80" rows="10"></textarea>
+				<textarea id="up_examples" cols="80" rows="10"><%=data.examples%></textarea>
 			</div>
 
 
