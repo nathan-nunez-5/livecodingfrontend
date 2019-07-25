@@ -10,6 +10,6 @@ function sendPost(){
     up_examples: examples
   }
   var path = '/'
-  ajaxCall(path, params)//trying to get this to work but so far nothing
+  ajaxCall(path, params)
   lock = false
 }

@@ -35,8 +35,8 @@ function ajaxCall(path, params, method = 'POST'){
   xhr.onreadystatechange = function() { // Call a function when the state changes.
     if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
       var up = JSON.parse(xhr.responseText)
-      $('#up_code').val() = up.code
-      $('#up_examples').val() = up.examples
+      document.getElementById('up_code').value = up.code
+      document.getElementById('up_examples').value = up.examples
     }
   }
   var json = JSON.stringify(params)
