@@ -67,7 +67,7 @@ app.get('/', function(request, response){
 		code: start_code,
 		examples: start_examples,
 	}
-	response.render('testing2', {up: up});
+	response.render('livedefault', {up: up});
 
 })
 
