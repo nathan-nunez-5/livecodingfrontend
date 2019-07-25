@@ -79,7 +79,6 @@ var updateCodeEvalJS = backendFxns.updateCodeEvalJS
 
 app.post('/', urlencodedParser, function(request, response){
 	console.log('request (post) was made: ' + request.url);
-  console.log(request.body.user_program)
   var parsedProgram = JSON.parse(request.body.user_program)
 	//grab text bodies
 	var up_code = parsedProgram.up_code
@@ -132,8 +131,6 @@ app.post('/', urlencodedParser, function(request, response){
     	}
       //setExamples(res.newExamples);
     }
-
-    console.log("rhis is", up)
 	response.send(up);
 
 });

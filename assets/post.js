@@ -23,24 +23,23 @@ function post(path, params, method ='post') {
       form.appendChild(hiddenField);
     }
   }
-
   document.body.appendChild(form);
   form.submit();
 }
 
 function ajaxCall(path, params, method = 'POST'){
-  console.log('ajax')
   var xhr = new XMLHttpRequest()
+  var unlocked = true
   xhr.open(method, path)
   xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
-  console.log(JSON.stringify(params))
-
   xhr.onreadystatechange = function() { // Call a function when the state changes.
     if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
       var up = JSON.parse(xhr.responseText)
-      document.getElementById('up_code').value = up.code
-      document.getElementById('up_examples').value = up.examples
+      $('#up_code').val() = up.code
+      $('#up_examples').val() = up.examples
     }
   }
-  xhr.send("user_program="+JSON.stringify(params))
+  var json = JSON.stringify(params)
+  //we encode so that we don't lose our '+' char
+  xhr.send("user_program="+ encodeURIComponent(json))
 }
