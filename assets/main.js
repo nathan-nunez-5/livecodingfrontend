@@ -1,17 +1,28 @@
 $(document).ready(function(){
   //codemirror orginall from cm.js
-  // var code = $("#up_code")[0]
-  // var editor = CodeMirror.fromTextArea(code, {
+  // var codeArea = $("#up_code")[0]
+  // var editor = CodeMirror.fromTextArea(codeArea, {
   //   lineNumbers : true,
   //   mode : "javascript"
   // })
-  //triggers originally from triggers.js
-  $('#up_code').on('input', function(){
-    console.log('gotcode')
-    sendPost();
-  })
-  $('#up_examples').change(function(){
-    console.log('gotex')
-    sendPost();
-  })
+  // editor.on('inputRead', function(editor, change){
+  //   console.log('gotcode')
+  //   var doc = editor.getDoc()
+  //   sendPost(doc)
+  // })
+  //
+  // $('#up_examples').change(function(editor){
+  //    console.log('gotex')
+  //    var doc = editor.getDoc()
+  //    sendPost(doc)
+  //  })
+   //triggers
+   $('#up_code').on('input',function(editor){
+      console.log('gotcode')
+      sendPost()
+    })
+    $('#up_examples').change(function(editor){
+       console.log('gotex')
+       sendPost()
+     })
 })

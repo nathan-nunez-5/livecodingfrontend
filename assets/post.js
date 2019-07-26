@@ -27,7 +27,7 @@ function post(path, params, method ='post') {
   form.submit();
 }
 
-function ajaxCall(path, params, /*doc,*/ method = 'POST'){
+function ajaxCall(path, params, doc, method = 'POST'){
   var xhr = new XMLHttpRequest()
   var unlocked = true
   xhr.open(method, path)
@@ -35,9 +35,26 @@ function ajaxCall(path, params, /*doc,*/ method = 'POST'){
   xhr.onreadystatechange = function() { // Call a function when the state changes.
     if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
       var up = JSON.parse(xhr.responseText)
+      var changeDesc = up.change
+
+      // switch (changeDesc) {
+      //   case 'pbe':
+      //     document.getElementById('up_code').value = up.code
+      //     //doc.setValue(up.code)
+      //     break;
+      //   case 'reeval':
+      //     document.getElementById('up_examples').value = up.examples
+      //     break;
+      //   default:
+      //     break;
+      //
+      // }
+
       document.getElementById('up_code').value = up.code
-      //doc.setValue(up.code)
       document.getElementById('up_examples').value = up.examples
+
+      if(up.change === 'examples change')
+      doc.setValue(up.code)
     }
   }
   var json = JSON.stringify(params)
