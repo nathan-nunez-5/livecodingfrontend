@@ -136,7 +136,7 @@ app.post('/', urlencodedParser, function(request, response){
 });
 
 app.get('/problems/:key', function(request, response){
-  var problem_key = request.params.key
+  var problem_key = request.params.key - 1
   var problemhashtable = ['problem1_', 'problem2_']
   var problem_name = problemhashtable[problem_key]
   if(problem_name == null){
@@ -175,8 +175,8 @@ app.get('/problems/:key', function(request, response){
 
 
 app.post('/problems/:key', urlencodedParser, function(request, response){
-  var problem_key = request.params.key
-  var problemhashtable = ['problem1_', 'problem2_']
+  var problem_key = request.params.key - 1
+  var problemhashtable = ['problem1_', 'problem2_', 'problem3_', 'problem4_']
   var problem_name = problemhashtable[problem_key]
   if(problem_name == null){
     response.send('no problem here sorry')
