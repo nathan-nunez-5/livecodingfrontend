@@ -1,4 +1,4 @@
 Construct a function with input that that takes in two string inputs s1 and s2 and
 returns the concatenation of the two strings with a space in between and period following s2.
 
-Ex f("happy", "days") -> "happy days."
+Ex f("happy", "days") -> "happyadays."
