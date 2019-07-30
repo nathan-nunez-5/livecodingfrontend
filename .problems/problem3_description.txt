@@ -1,1 +1,7 @@
-This problem should move 7-8 to 11 when the input is divisible by 3.
+Write a function f which takes in a string such that if its length is divisible by 3,
+return the string constructed by taking every third character of the input.
+If its length is not divisible by 3, return the string's first and last letter concatenated together.
+
+f("a") = "aa"
+f("hello!") = "l!"
+f("every third character") = "e i acr"

@@ -1,1 +1,2 @@
-tbf
+Write a function f that takes in a number. If it is 0 return "nothing to start with", otherwise return a function that matches these examples.
+f(1) = 5  f(-9) = -25.

@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <html>
 	<head>
-    <link href="/assets/styles.css" rel="stylesheet" type="text/css"/>
-		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+		<link href="/assets/styles.css" rel="stylesheet" type="text/css"/>
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 
 		<link type="text/css" rel="stylesheet" href="/assets/codemirror/lib/codemirror.css">
 		<script type="text/javascript" src="/assets/codemirror/lib/codemirror.js"></script>
@@ -16,19 +20,21 @@
 	</head>
 	<body>
 		<div id="title">
-			<h1> Welcome to Live Coding Interface </h1>
+			<h1> </h1>
 		</div>
 		<div id="description">
-			<p> <%= data.description%> </p>
+			<p><%= data.description%></p>
 		</div>
-		<div id="status_bar"><div>
-			<div id="code_space" class="split left">
+		<div id="status_bar">
+		</div>
+		<div class "row">
+			<div id="code_space" class="column">
+				<h2>Live Code Window</h2>
 				<textarea id="up_code" cols="80" rows="10"><%=data.code%></textarea>
 			</div>
-			<div id="examples_space" class="split right">
+			<div id="examples_space" class="column">
+				<h2>PBE (Programming By Example) Window</h2>
 				<textarea id="up_examples" cols="80" rows="10"><%=data.examples%></textarea>
 			</div>
-
-
-	</body>
+		</div>
 </html>

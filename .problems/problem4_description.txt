@@ -1,1 +1,7 @@
-tbf
+Feel free to solve this problem with any method (using just the pbe window, the live code window or a combination of the two)
+
+Write a function that takes in strings and concatenates their 5th characters,
+if a string doesn't have an 5th character concatenate a space instead.
+
+f("hello") = "o"
+f("1") = " "
