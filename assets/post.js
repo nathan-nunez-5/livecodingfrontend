@@ -49,8 +49,8 @@ function ajaxCall(path, params, doc, method = 'POST'){
       //     break;
       //
       // }
-
-      document.getElementById('up_code').value = up.code
+      doc.setValue(up.code)
+      //document.getElementById('up_code').value = up.code
       document.getElementById('up_examples').value = up.examples
 
       if(up.change === 'examples change')
