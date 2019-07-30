@@ -6,15 +6,11 @@ $(document).ready(function(){
     mode : "javascript"
   })
   editor.on('inputRead', function(editor, change){
-    //console.log('gotcode')
     var doc = editor.getDoc()
     sendPost(doc)
-    console.log('inputread event')
   })
 
   $('#up_examples').change(function(){
-     console.log('gotex')
-     console.log(editor)
      var doc = editor.getDoc()
      sendPost(doc)
    })

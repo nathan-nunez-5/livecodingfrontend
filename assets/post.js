@@ -35,26 +35,18 @@ function ajaxCall(path, params, doc, method = 'POST'){
   xhr.onreadystatechange = function() { // Call a function when the state changes.
     if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
       var up = JSON.parse(xhr.responseText)
-      var changeDesc = up.change
+      switch (up.change) {
+        case 'pbe':
+          doc.setValue(up.code)
+          break;
+        case 'reeval':
+          document.getElementById('up_examples').value = up.examples
+          break;
+        default:
+          alert("pbe synthesis failed, type in new examples")
+          break;
 
-      // switch (changeDesc) {
-      //   case 'pbe':
-      //     document.getElementById('up_code').value = up.code
-      //     //doc.setValue(up.code)
-      //     break;
-      //   case 'reeval':
-      //     document.getElementById('up_examples').value = up.examples
-      //     break;
-      //   default:
-      //     break;
-      //
-      // }
-      doc.setValue(up.code)
-      //document.getElementById('up_code').value = up.code
-      document.getElementById('up_examples').value = up.examples
-
-      if(up.change === 'examples change')
-      doc.setValue(up.code)
+      }
     }
   }
   var json = JSON.stringify(params)

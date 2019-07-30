@@ -48,6 +48,7 @@ progress:
 - [x] open link in new window in survey
 - [x] fix middle question in survey
 - [x] loading code from files in server
+- [x] bootstrap implementation
 
 
 
@@ -65,6 +66,26 @@ TODOS:
 - [ ] easy pbe
 - [ ] clean up code
 - [ ] clean up how code is saved onto tmp folder
+
+Pilot TODOS:
+- [x] edit survey description of live programming
+- [ ] change the survey to make it have equals sign instead o arrow
+- [x] fix cursor reset
+- [ ] make it clear that you have to go back to the survey when its done
+- [ ] format examples into a table. or just format them period
+- [x] link 3 is broken *
+- [x] popup window when synthesis fails *
+- [ ] be specific in last question, question 4 *
+- [ ] stop revaluation when new example is introduced -> shortcut to synthesis instead
+- [ ] write a short description in the qualtrics *
+- [ ] add a link to the bottom of problems to close window
+- [ ] add flavor text to problem descritions
+
+
+
+we saw that he used a combination of both in the last question
+
+
 
 Long term TODOS:
 - [ ] lorem

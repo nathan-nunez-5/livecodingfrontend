@@ -108,6 +108,7 @@ app.post('/', urlencodedParser, function(request, response){
     //came out of pbe and cvc4 couldn't generate an appropriate function
     if (res.newExamples === null && res.newCode == up_code){
       var up = {
+        change: 'no change',
         code: up_code,
         examples: up_examples,
         pbeStatus: "pbe synthesis failed, please try new examples"
@@ -117,6 +118,7 @@ app.post('/', urlencodedParser, function(request, response){
     if (res.newCode !== null && res.newCode != up_code) {
       console.log('pbe')
       var up = {
+        change: 'pbe',
     		code: res.newCode,
     		examples: up_examples
     	}
@@ -126,6 +128,7 @@ app.post('/', urlencodedParser, function(request, response){
     if (res.newExamples != null) {
       console.log('reeval')
       var up = {
+        change: 'reeval',
     		code: up_code,
     		examples: writeExamples(res.newExamples)
     	}

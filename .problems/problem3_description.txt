@@ -2,6 +2,8 @@ Write a function f which takes in a string such that if its length is divisible 
 return the string constructed by taking every third character of the input.
 If its length is not divisible by 3, return the string's first and last letter concatenated together.
 
-f("a") = "aa"
-f("hello!") = "l!"
-f("every third character") = "e i acr"
+First example: f("a") = "aa"
+
+Second example: f("hello!") = "l!"
+
+Third example: f("every third character") = "e i acr"
