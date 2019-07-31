@@ -32,19 +32,31 @@ $(document).ready(function(){
    //   })
 })
 
-function renderTable(sample_json){
+function renderTable(samples){
+  //console.log(samples)
+  var sample_json = JSON.parse(samples)
+  //console.log(sample_json)
   var html_string = ""
-  var numSamples = sample_json.sample_num
+  var rows = sample_json.sample_num
 
-  if(true/*sample_json == null || numSamples == 0*/){
+  if(samples == null || rows == 0){
     html_string = '<p>no examples present</p>'
-    console.log(html_string)
-    //$('#io_container').html(html_string)
-    document.getElementById('io_container').insertAdjacentHTML('beforeend', '<div></div>')
+    $('#io_container').append(html_string)
   }
   else{
     html_string += "<table class=\"table\"> <thead> <tr><th scope=\"col\">#</th><th scope=\"col\">Input(s)</th><th scope=\"col\">Output</th></tr> </thead>"
     html_string += "<tbody>"
+    for(var i = 0; i < rows; i++){
+      var io_object = sample_json.sample_pairs[i]
+      var input = io_object.input
+      var output = io_object.output
+      var rowNum = i+1
+      var substring = "<tr>  <th scope=\"row\">" + (i+1) +"</th>"
+      substring += "<td>" + input + "</td> <td> " + output + "</td>"
+      substring += "</tr>"
+      
+      html_string += substring
+    }
       // <tr>
       //   <th scope="row">1</th>
       //   <td>Mark</td>
@@ -64,6 +76,8 @@ function renderTable(sample_json){
       //   <td>@twitter</td>
       // </tr>
     html_string += " </tbody></table>"
+    $('#io_container').append(html_string)
+
   }
 
 

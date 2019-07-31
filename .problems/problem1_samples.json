@@ -1,9 +1,13 @@
 {
-  "sample_num": 1,
+  "sample_num": 2,
   "sample_pairs": [
     {
-      "input": "(\"happy\", \"days\")",
+      "input": "\"happy\", \"days\"",
       "output": "\"happy days.\""
+    },
+    {
+      "input": "\"hello\", \"world\"",
+      "output": "\"hello world.\""
     }
   ]
 }

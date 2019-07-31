@@ -81,6 +81,7 @@ Pilot TODOS:
 - [ ] add a link to the bottom of problems to close window
 - [ ] add flavor text to problem descritions
 - [ ] add button to approach did you find a solution
+- [ ] make problems bigger
 
 
 we saw that he used a combination of both in the last question
