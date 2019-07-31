@@ -1,4 +1,4 @@
-Please use the PBE window to do the following question.  Construct a function with input that that takes in two string inputs s1 and s2 and
+Please use the PBE window to do the following question.  Construct a function with input that takes in two string inputs s1 and s2 and
 returns the concatenation of the first string, s1, a space character, the whole second string, and a period character.
 
 Ex

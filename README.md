@@ -49,6 +49,12 @@ progress:
 - [x] fix middle question in survey
 - [x] loading code from files in server
 - [x] bootstrap implementation
+- [x] link 3 is broken
+- [x] popup window when synthesis fails
+- [x] edit survey description of live programming
+- [x] fix cursor reset- [x] be specific in last question, question 4 *
+- [x] be specific in last question, question 4 *
+- [x] write a short description in the qualtrics *
 
 
 
@@ -68,24 +74,27 @@ TODOS:
 - [ ] clean up how code is saved onto tmp folder
 
 Pilot TODOS:
-- [x] edit survey description of live programming
-- [ ] change the survey to make it have equals sign instead o arrow
-- [x] fix cursor reset
+- [ ] change the survey to make it have equals sign instead of arrow
 - [ ] make it clear that you have to go back to the survey when its done
 - [ ] format examples into a table. or just format them period
-- [x] link 3 is broken *
-- [x] popup window when synthesis fails *
-- [ ] be specific in last question, question 4 *
 - [ ] stop revaluation when new example is introduced -> shortcut to synthesis instead
-- [ ] write a short description in the qualtrics *
+- [ ] add equal sign input reeval
 - [ ] add a link to the bottom of problems to close window
 - [ ] add flavor text to problem descritions
-
+- [ ] add button to approach did you find a solution
 
 
 we saw that he used a combination of both in the last question
 
+user didn't know how to start using the pbe window,
+didn't know where to start make it clear how to start
+describe in the description that the pbe window can't solve everything
+when function reeeval doesn't work don't send an alert
 
+figure out if problem 2 actually works
 
-Long term TODOS:
-- [ ] lorem
+add some flavor text into response after problem tell them to describe what techinques thye used. what Windows did they use?
+last problem chose to do it in code
+
+build into tutorial pbe cant do things
+let them see it once
