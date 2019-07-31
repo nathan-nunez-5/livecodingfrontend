@@ -1,9 +1,7 @@
-Write a function f which takes in a string such that if its length is divisible by 3,
+You do not need to only use the PBE window. Write a function f which takes in a string such that if its length is divisible by 3,
 return the string constructed by taking every third character of the input.
 If its length is not divisible by 3, return the string's first and last letter concatenated together.
 
-First example: f("a") = "aa"
-
-Second example: f("hello!") = "l!"
-
-Third example: f("every third character") = "e i acr"
+f("you") = "u"
+f("hello!") = "l!"
+f("what") = "wt"

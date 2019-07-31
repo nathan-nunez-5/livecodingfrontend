@@ -1,0 +1,13 @@
+{
+  "sample_num": 2,
+  "sample_pairs": [
+    {
+      "input": 1,
+      "output": 5
+    },
+    {
+      "input": -9,
+      "output": -25
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "sample_num": 2,
+  "sample_pairs": [
+    {
+      "input": "(\"hello\", \"world\")",
+      "output": "\"od\""
+    },
+    {
+      "input": "(\"1\", \"what\")",
+      "output": "\"  \""
+    }
+  ]
+}

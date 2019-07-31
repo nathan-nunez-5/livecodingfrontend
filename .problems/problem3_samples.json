@@ -1,0 +1,17 @@
+{
+  "sample_num": 3,
+  "sample_pairs": [
+    {
+      "input": "\"a\"",
+      "output": "\"aa\""
+    },
+    {
+      "input": "\"hello!\"",
+      "output": "\"l!\""
+    },
+    {
+      "input": "\"every third character\"",
+      "output": "\"e i acr\""
+    }
+  ]
+}

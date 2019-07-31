@@ -1,0 +1,9 @@
+{
+  "sample_num": 1,
+  "sample_pairs": [
+    {
+      "input": "(\"happy\", \"days\")",
+      "output": "\"happy days.\""
+    }
+  ]
+}

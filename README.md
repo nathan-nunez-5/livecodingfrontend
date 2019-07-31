@@ -61,7 +61,6 @@ progress:
 TODOS:
 - [ ] fix that when you have an undefined example it takes two loads for it to get back into being live
 - [ ] codemirror integration
-- [ ] integrate griffins ideas into examples
 - [ ] seperate interface helpers code out of app.js
 - [ ] sort TODOS
 - [ ] look into lines change in example window

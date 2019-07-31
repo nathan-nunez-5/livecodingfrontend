@@ -149,6 +149,7 @@ app.get('/problems/:key', function(request, response){
   var description = ''
   var start_code = ''
 	var start_examples = ''
+  var samples = ''
 	var items = fs.readdirSync('./.problems')
 	//console.log(items)
 
@@ -166,11 +167,19 @@ app.get('/problems/:key', function(request, response){
 	}else {
     console.log('we missing:' + problem_name +'code.js')
   }
+  //samples
+	if(items.includes(problem_name +'samples.json')){
+		var raw_samples = fs.readFileSync('./.problems/'+ problem_name +'samples.json', 'utf8')
+    samples = JSON.stringify(raw_samples)
+	}else {
+    console.log('we missing:' + problem_name +'samples.json')
+  }
 
 	var data = {
     description: description,
 		code: start_code,
 		examples: start_examples,
+    samples: samples
 	}
 	response.render('liveproblems', {data: data});
 

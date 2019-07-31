@@ -1,5 +1,5 @@
-Write a function f that takes in a number. If it is 0 return "nothing to start with", otherwise return a function that matches these examples.
-First example:
-f(1) = 5
-Second example:
-f(-9) = -25.
+You do not need to only use the PBE window. Write a function f that takes in a number.
+If it is 0 return "nothing to start with",
+otherwise return a value 2 more than 3 times the input.
+
+examples: f(5) = 17 & f(-9) = -25

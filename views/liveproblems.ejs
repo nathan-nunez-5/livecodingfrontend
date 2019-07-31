@@ -74,8 +74,24 @@
 	<!-- Main jumbotron for a primary marketing message or call to action -->
 	<div class="jumbotron">
 		<div class="container">
-			<h2 class="display-3" id="description">Prompt</h2>
-			<p><%=data.description%></p>
+			<div class="row">
+				<div class="col-8">
+					<h3>Prompt</h3>
+						<p><%=data.description%></p>
+
+				</div>
+				<div class="col-4">
+					<h3>Sample Input-Output</h3>
+					<p>placeholder for examples</p>
+					 <script>
+					 	var sample_json = <%-data.samples%>
+					 	//renderTable(sample_json)
+					</script>
+					<div class="container" id="io_container">
+
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 
@@ -83,7 +99,7 @@
 		<!-- Example row of columns -->
 		<div class="row">
 			<div class="col-6">
-				<h2>Live Code Window</h2>
+				<h2>Live Coding Window</h2>
 				<div id="code_space" class="codemirror-div">
 					<textarea id="up_code" cols="80" rows="10"><%=data.code%></textarea>
 				</div>
