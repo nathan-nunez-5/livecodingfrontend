@@ -1,6 +1,5 @@
-Please use the PBE window to do the following question.
-Construct a function with input that takes in two string
-inputs s1 and s2 and
-returns the concatenation of the first string,
-s1, a space character, the whole second string,
-and a period character.
+Please use the PBE window on the right to construct a function that meets the following criteria.
+Do not use the code window on the left to manually write the function at this time.
+</br></br>
+Construct a function that takes two string parameters as input.
+The function should return the concatenation of the first string, to a space character, to the second string, to a period character at the end.

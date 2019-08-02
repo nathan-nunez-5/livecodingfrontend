@@ -1,0 +1,13 @@
+We will be going over the two features of the LPI.
+
+<h3> Programming Synthesis </h3>
+To activate synthesis, try inputing one of the examples into the PBE window. There can only be one example per line, and in each the example must be formatted
+as follows
+</br>
+f(input) =  output
+</br>
+Note that the examples must be formatted correctly in order for synthesis to work. Synthesis will activate once you click outside the window.
+
+<h3> Programming Reevaluation </h3>
+To activate reevaluation change the code within the Live Coding window. Changes will appear in real-time in the example window.
+Try changing the double function to 2 more than its input 

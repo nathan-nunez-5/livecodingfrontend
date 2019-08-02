@@ -54,31 +54,14 @@ function renderTable(samples){
       var substring = "<tr>  <th scope=\"row\">" + (i+1) +"</th>"
       substring += "<td>" + input + "</td> <td> " + output + "</td>"
       substring += "</tr>"
-      
+
       html_string += substring
     }
-      // <tr>
-      //   <th scope="row">1</th>
-      //   <td>Mark</td>
-      //   <td>Otto</td>
-      //   <td>@mdo</td>
-      // </tr>
-      // <tr>
-      //   <th scope="row">2</th>
-      //   <td>Jacob</td>
-      //   <td>Thornton</td>
-      //   <td>@fat</td>
-      // </tr>
-      // <tr>
-      //   <th scope="row">3</th>
-      //   <td>Larry</td>
-      //   <td>the Bird</td>
-      //   <td>@twitter</td>
-      // </tr>
     html_string += " </tbody></table>"
     $('#io_container').append(html_string)
-
   }
+}
 
-
+function renderDescription(desc){
+  $('#desc_container').append(desc)
 }

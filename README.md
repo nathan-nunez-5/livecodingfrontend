@@ -52,15 +52,20 @@ progress:
 - [x] link 3 is broken
 - [x] popup window when synthesis fails
 - [x] edit survey description of live programming
-- [x] fix cursor reset- [x] be specific in last question, question 4 *
-- [x] be specific in last question, question 4 *
-- [x] write a short description in the qualtrics *
+- [x] fix cursor reset- [x] be specific in last question, question 4
+- [x] be specific in last question, question 4
+- [x] write a short description in the qualtrics
+- [x] codemirror integration
+- [x] format examples into a table. or just format them period
+- [x] add equal sign input reeval
+- [x] add flavor text to problem descritions
+
+
 
 
 
 TODOS:
 - [ ] fix that when you have an undefined example it takes two loads for it to get back into being live
-- [ ] codemirror integration
 - [ ] seperate interface helpers code out of app.js
 - [ ] sort TODOS
 - [ ] look into lines change in example window
@@ -75,16 +80,10 @@ TODOS:
 Pilot TODOS:
 - [ ] change the survey to make it have equals sign instead of arrow
 - [ ] make it clear that you have to go back to the survey when its done
-- [ ] format examples into a table. or just format them period
-- [ ] stop revaluation when new example is introduced -> shortcut to synthesis instead
-- [ ] add equal sign input reeval
 - [ ] add a link to the bottom of problems to close window
-- [ ] add flavor text to problem descritions
 - [ ] add button to approach did you find a solution
 - [ ] make problems bigger
 
-
-we saw that he used a combination of both in the last question
 
 user didn't know how to start using the pbe window,
 didn't know where to start make it clear how to start
@@ -98,3 +97,5 @@ last problem chose to do it in code
 
 build into tutorial pbe cant do things
 let them see it once
+
+change examples

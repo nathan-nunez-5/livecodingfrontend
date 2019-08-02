@@ -176,7 +176,7 @@ app.get('/problems/:key', function(request, response){
   }
 
 	var data = {
-    description: description,
+    description: JSON.stringify(description),
 		code: start_code,
 		examples: start_examples,
     samples: samples
@@ -193,6 +193,101 @@ app.post('/problems/:key', urlencodedParser, function(request, response){
   if(problem_name == null){
     response.send('no problem here sorry')
   }
+	console.log('request (post) was made: ' + request.url);
+  var parsedProgram = JSON.parse(request.body.user_program)
+	//grab text bodies
+	var up_code = parsedProgram.up_code
+	var up_examples = parsedProgram.up_examples
+
+  // var up_code = request.body.up_code
+  // var up_examples = request.body.up_examples
+	//savefiles in hidden folder tmp
+	var userFolder = 'tmp/' + request.cookies.uCookie + '/'
+  console.log(userFolder)
+	fs.writeFileSync(userFolder + problem_name +'code.js', up_code)
+	fs.writeFileSync(userFolder + problem_name +'code.js.examples', up_examples)
+  var path = userFolder +problem_name +'code.js.sl'
+	//console.log("begin: updateCodeEvalJS")
+  console.log("before reeval" + up_code)
+  var res = updateCodeEvalJS(up_code, parseExamples(up_examples), path)
+    //came out of pbe and cvc4 couldn't generate an appropriate function
+    if (res.newExamples === null && res.newCode == up_code){
+      var up = {
+        change: 'no change',
+        code: up_code,
+        examples: up_examples,
+        pbeStatus: "pbe synthesis failed, please try new examples"
+      }
+    }
+    //pbe
+    if (res.newCode !== null && res.newCode != up_code) {
+      console.log('pbe')
+      var up = {
+        change: 'pbe',
+    		code: res.newCode,
+    		examples: up_examples
+    	}
+      //setCode(pbeFile, res.newCode);
+    }
+    //reeval
+    if (res.newExamples != null) {
+      console.log('reeval')
+      var up = {
+        change: 'reeval',
+        code: up_code,
+    		examples: writeExamples(res.newExamples)
+    	}
+      //setExamples(res.newExamples);
+    }
+	response.send(up);
+
+});
+
+app.get('/tutorial', function(request, response){
+  var problem_name = 'tutorial_'
+
+  var description = ''
+  var start_code = ''
+	var start_examples = ''
+  var samples = ''
+	var items = fs.readdirSync('./.problems')
+	//console.log(items)
+
+  //description
+  if(items.includes(problem_name +'description.txt')){
+		description = fs.readFileSync('./.problems/'+ problem_name +'description.txt', 'utf8')
+		//console.log('description has been uploaded')
+	}else {
+    console.log('we missing:' + problem_name +'description.txt')
+  }
+  //code
+	if(items.includes(problem_name +'code.js')){
+		start_code = fs.readFileSync('./.problems/'+ problem_name +'code.js', 'utf8')
+		//console.log('code has been uploaded')
+	}else {
+    console.log('we missing:' + problem_name +'code.js')
+  }
+  //samples
+	if(items.includes(problem_name +'samples.json')){
+		var raw_samples = fs.readFileSync('./.problems/'+ problem_name +'samples.json', 'utf8')
+    samples = JSON.stringify(raw_samples)
+	}else {
+    console.log('we missing:' + problem_name +'samples.json')
+  }
+
+	var data = {
+    description: JSON.stringify(description),
+		code: start_code,
+		examples: start_examples,
+    samples: samples
+	}
+	response.render('livetutorial', {data: data});
+
+})
+
+app.post('/tutorial', urlencodedParser, function(request, response){
+  var problem_name = 'tutorial_'
+
 	console.log('request (post) was made: ' + request.url);
   var parsedProgram = JSON.parse(request.body.user_program)
 	//grab text bodies

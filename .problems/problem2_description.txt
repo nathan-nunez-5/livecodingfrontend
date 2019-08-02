@@ -1,3 +1,5 @@
-You do not need to only use the PBE window. Write a function f that takes in a number.
-If it is 0 return "nothing to start with",
-otherwise return a value 2 more than 3 times the input.
+For this task you may use both the PBE window to leverage synthesis, as well the code window on the right to manually write code.
+</br></br>
+Write a function f that a single integer parameter as input.
+If the input is 0, return the string literal "nothing".
+Otherwise, the function should return a value 2 more than 3 times the input.
