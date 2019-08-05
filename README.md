@@ -64,38 +64,18 @@ progress:
 - [x] add a link to the bottom of problems to close window
 - [x] add button to approach did you find a solution
 
-
-
-
-
 TODOS:
 - [ ] fix that when you have an undefined example it takes two loads for it to get back into being live
 - [ ] seperate interface helpers code out of app.js
 - [ ] sort TODOS
 - [ ] look into lines change in example window
 - [ ] synthesis fires every time its well formatted
-- [ ] something to think about - get function to be made from just up_examples
 - [ ] get some message when synthesis engine couldn't do it
 - [ ] record js evaluations
 - [ ] easy pbe
-- [ ] clean up code
-- [ ] clean up how code is saved onto tmp folder
 
 Pilot TODOS:
-
-
-
-user didn't know how to start using the pbe window,
-didn't know where to start make it clear how to start
-describe in the description that the pbe window can't solve everything
-when function reeeval doesn't work don't send an alert
-
-figure out if problem 2 actually works
-
-add some flavor text into response after problem tell them to describe what techinques thye used. what Windows did they use?
-last problem chose to do it in code
-
-build into tutorial pbe cant do things
-let them see it once
-
-change examples
+- [ ] give alerts only when can't run and when pbe window is in focus (when function reeeval doesn't work don't send an alert)
+- [ ] make language for alert more clear
+- [ ] make limitations for PBE clear
+- [ ] make tutorial extra clear
