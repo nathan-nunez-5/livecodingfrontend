@@ -1,13 +1,17 @@
 {
-  "sample_num": 2,
+  "sample_num": 3,
   "sample_pairs": [
     {
       "input": "\"hello\", \"world\"",
       "output": "\"od\""
     },
     {
+      "input": "\"large\", \"pizza\"",
+      "output": "\"ea\""
+    },
+    {
       "input": "\"1\", \"what\"",
-      "output": "\"  \""
+      "output": "\"__\""
     }
   ]
 }

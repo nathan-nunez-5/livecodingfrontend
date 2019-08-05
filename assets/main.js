@@ -15,12 +15,19 @@ $(document).ready(function(){
      sendPost(doc)
    })
    $('#up_examples').keydown(function(e){
+     console.log(e.which)
      if(e.which == 61){
        var doc = editor.getDoc()
        sendPost(doc)
      }
-
     })
+    $('#up_examples').keydown(function(e){
+      console.log(e.which)
+      if(e.which == 13){
+        var doc = editor.getDoc()
+        sendPost(doc)
+      }
+     })
    //triggers
    // $('#up_code').on('input',function(editor){
    //    console.log('gotcode')

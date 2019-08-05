@@ -4,3 +4,8 @@ Write a function which takes a single string parameter as input.
 If the length of the input string is divisible by 3,
 return a string constructed by taking every third character of the input.
 If the length of the input is not divisible by 3, return the input string's first and last letter concatenated together.
+
+Write a function which takes a single string parameter as input.
+If the length of the input string is divisible by 3,
+return a string constructed by taking every third character of the input.
+If the length of the input is not divisible by 3, return the string literal "done".

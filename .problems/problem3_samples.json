@@ -1,17 +1,21 @@
 {
-  "sample_num": 3,
+  "sample_num": 4,
   "sample_pairs": [
     {
-      "input": "\"a\"",
-      "output": "\"aa\""
+      "input": "\"booked\"",
+      "output": "\"od\""
+    },
+    {
+      "input": "\"apples\"",
+      "output": "\"ps\""
     },
     {
       "input": "\"hello!\"",
       "output": "\"l!\""
     },
     {
-      "input": "\"every third character\"",
-      "output": "\"e i acr\""
+      "input": "\"president\"",
+      "output": "\"edt\""
     }
   ]
 }

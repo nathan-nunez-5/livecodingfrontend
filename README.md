@@ -63,6 +63,7 @@ progress:
 - [x] make it clear that you have to go back to the survey when its done
 - [x] add a link to the bottom of problems to close window
 - [x] add button to approach did you find a solution
+- [x] synthesis fires on enter key pressed
 
 TODOS:
 - [ ] fix that when you have an undefined example it takes two loads for it to get back into being live
@@ -73,6 +74,7 @@ TODOS:
 - [ ] get some message when synthesis engine couldn't do it
 - [ ] record js evaluations
 - [ ] easy pbe
+- [ ] windows doesn't fire with = synthesis
 
 Pilot TODOS:
 - [ ] give alerts only when can't run and when pbe window is in focus (when function reeeval doesn't work don't send an alert)

@@ -2,4 +2,4 @@ For this task you may use both the PBE window to leverage synthesis, as well the
 </br></br>
 Write a function that takes two strings parameters as input.
 The function should output a string of length 2 by concatenating the fifth characters of each string.
-If either or both of the string inputs do not have a fifth character, the function should use a space character instead.
+If either or both of the string inputs do not have a fifth character, the function should use an underscore ("_") character instead.
