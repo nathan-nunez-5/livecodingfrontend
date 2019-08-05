@@ -73,8 +73,8 @@ TODOS:
 - [ ] synthesis fires every time its well formatted
 - [ ] get some message when synthesis engine couldn't do it
 - [ ] record js evaluations
-- [ ] easy pbe
-- [ ] windows doesn't fire with = synthesis
+- [ ] chrome doesn't fire with = synthesis
+- [ ] get rid of = null for empty line
 
 Pilot TODOS:
 - [ ] give alerts only when can't run and when pbe window is in focus (when function reeeval doesn't work don't send an alert)

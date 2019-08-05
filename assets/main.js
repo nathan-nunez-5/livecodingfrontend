@@ -9,25 +9,26 @@ $(document).ready(function(){
     var doc = editor.getDoc()
     sendPost(doc)
   })
-
+  //lose focus synthesis
   $('#up_examples').change(function(){
-     var doc = editor.getDoc()
-     sendPost(doc)
+    var doc = editor.getDoc()
+    sendPost(doc)
    })
-   $('#up_examples').keydown(function(e){
-     console.log(e.which)
-     if(e.which == 61){
-       var doc = editor.getDoc()
-       sendPost(doc)
-     }
-    })
-    $('#up_examples').keydown(function(e){
-      console.log(e.which)
-      if(e.which == 13){
+
+  $('#up_examples').keydown(function(e){
+    //console.log(e)
+    var keyPressedValue = e.originalEvent.key
+    // = synthesis
+    if(keyPressedValue == "="){
+      var doc = editor.getDoc()
+      sendPost(doc)
+    }
+    //enter-synthesis
+    if(keyPressedValue == "Enter"){
         var doc = editor.getDoc()
         sendPost(doc)
-      }
-     })
+    }
+  })
    //triggers
    // $('#up_code').on('input',function(editor){
    //    console.log('gotcode')
