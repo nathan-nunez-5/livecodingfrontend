@@ -59,6 +59,10 @@ progress:
 - [x] format examples into a table. or just format them period
 - [x] add equal sign input reeval
 - [x] add flavor text to problem descritions
+- [x] change the survey to make it have equals sign instead of arrow
+- [x] make it clear that you have to go back to the survey when its done
+- [x] add a link to the bottom of problems to close window
+- [x] add button to approach did you find a solution
 
 
 
@@ -78,11 +82,7 @@ TODOS:
 - [ ] clean up how code is saved onto tmp folder
 
 Pilot TODOS:
-- [ ] change the survey to make it have equals sign instead of arrow
-- [ ] make it clear that you have to go back to the survey when its done
-- [ ] add a link to the bottom of problems to close window
-- [ ] add button to approach did you find a solution
-- [ ] make problems bigger
+
 
 
 user didn't know how to start using the pbe window,
