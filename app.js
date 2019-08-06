@@ -67,63 +67,27 @@ var writeExamples = backendFxns.writeExamples
 var reeval = backendFxns.reeval
 var updateCodeEvalJS = backendFxns.updateCodeEvalJS
 
+
 app.post('/', urlencodedParser, function(request, response){
 	console.log('request (post) was made: ' + request.url);
   var parsedProgram = JSON.parse(request.body.user_program)
 	var up_code = parsedProgram.up_code
 	var up_examples = parsedProgram.up_examples
-  //'pbe' or 'eval'
-  var mode = parsedProgram.mode
+  var mode = parsedProgram.mode //'pbe' or 'eval'
 
 	//savefiles in hidden folder tmp
 	var userFolder = 'tmp/' + request.cookies.uCookie + '/'
 	fs.writeFileSync(userFolder + 'code.js', up_code)
 	fs.writeFileSync(userFolder + 'code.js.examples', up_examples)
-
-	//the atom interface we need trim before we parse
-	//var newExamples = writeExamples(reeval(up_code, parseExamples(up_examples)))
-
   var path = userFolder +'code.js.sl'
-  console.log("before reeval" + up_code)
-  var res = updateCodeEvalJS(up_code, parseExamples(up_examples), path)
 
-  if(mode == 'eval'){
-    console.log('in eval')
-  }else{ //mode == 'pbe' (there are only two modes)
-    console.log('in pbe')
-  }
-  //came out of pbe and cvc4 couldn't generate an appropriate function
-  if (res.newExamples === null && res.newCode == up_code){
-    var up = {
-      change: 'no change',
-      code: up_code,
-      examples: up_examples,
-      pbeStatus: "pbe synthesis failed, please try new examples"
-    }
-  }
-    //pbe
-    if (res.newCode !== null && res.newCode != up_code) {
-      console.log('pbe')
-      var up = {
-        change: 'pbe',
-    		code: res.newCode,
-    		examples: up_examples
-    	}
-      //setCode(pbeFile, res.newCode);
-    }
-    //reeval
-    if (res.newExamples != null) {
-      console.log('reeval')
-      var up = {
-        change: 'reeval',
-    		code: up_code,
-    		examples: writeExamples(res.newExamples)
-    	}
-      //setExamples(res.newExamples);
-    }
+  //reeval/pbe
+  var res = updateCodeEvalJS(up_code, parseExamples(up_examples.trim()), path)
+  var up = parseResponse(up_code, up_examples, res, mode)
 	response.send(up);
-
 });
+
+
 
 app.get('/problems/:key', function(request, response){
   var problem_key = request.params.key - 1
@@ -138,19 +102,16 @@ app.get('/problems/:key', function(request, response){
 	var start_examples = ''
   var samples = ''
 	var items = fs.readdirSync('./.problems')
-	//console.log(items)
 
   //description
   if(items.includes(problem_name +'description.txt')){
 		description = fs.readFileSync('./.problems/'+ problem_name +'description.txt', 'utf8')
-		//console.log('description has been uploaded')
 	}else {
     console.log('we missing:' + problem_name +'description.txt')
   }
   //code
 	if(items.includes(problem_name +'code.js')){
 		start_code = fs.readFileSync('./.problems/'+ problem_name +'code.js', 'utf8')
-		//console.log('code has been uploaded')
 	}else {
     console.log('we missing:' + problem_name +'code.js')
   }
@@ -173,6 +134,7 @@ app.get('/problems/:key', function(request, response){
 })
 
 
+
 app.post('/problems/:key', urlencodedParser, function(request, response){
   var problem_key = request.params.key - 1
   var problemhashtable = ['problem1_', 'problem2_', 'problem3_', 'problem4_']
@@ -182,53 +144,21 @@ app.post('/problems/:key', urlencodedParser, function(request, response){
   }
 	console.log('request (post) was made: ' + request.url);
   var parsedProgram = JSON.parse(request.body.user_program)
-	//grab text bodies
 	var up_code = parsedProgram.up_code
 	var up_examples = parsedProgram.up_examples
+  var mode = parsedProgram.mode //'pbe' or 'eval'
 
-  // var up_code = request.body.up_code
-  // var up_examples = request.body.up_examples
-	//savefiles in hidden folder tmp
 	var userFolder = 'tmp/' + request.cookies.uCookie + '/'
-  console.log(userFolder)
 	fs.writeFileSync(userFolder + problem_name +'code.js', up_code)
 	fs.writeFileSync(userFolder + problem_name +'code.js.examples', up_examples)
   var path = userFolder +problem_name +'code.js.sl'
-	//console.log("begin: updateCodeEvalJS")
-  console.log("before reeval" + up_code)
-  var res = updateCodeEvalJS(up_code, parseExamples(up_examples), path)
-    //came out of pbe and cvc4 couldn't generate an appropriate function
-    if (res.newExamples === null && res.newCode == up_code){
-      var up = {
-        change: 'no change',
-        code: up_code,
-        examples: up_examples,
-        pbeStatus: "pbe synthesis failed, please try new examples"
-      }
-    }
-    //pbe
-    if (res.newCode !== null && res.newCode != up_code) {
-      console.log('pbe')
-      var up = {
-        change: 'pbe',
-    		code: res.newCode,
-    		examples: up_examples
-    	}
-      //setCode(pbeFile, res.newCode);
-    }
-    //reeval
-    if (res.newExamples != null) {
-      console.log('reeval')
-      var up = {
-        change: 'reeval',
-        code: up_code,
-    		examples: writeExamples(res.newExamples)
-    	}
-      //setExamples(res.newExamples);
-    }
-	response.send(up);
 
+  var res = updateCodeEvalJS(up_code, parseExamples(up_examples.trim()), path)
+  var up = parseResponse(up_code, up_examples, res, mode)
+	response.send(up);
 });
+
+
 
 app.get('/tutorial', function(request, response){
   var problem_name = 'tutorial_'
@@ -272,55 +202,64 @@ app.get('/tutorial', function(request, response){
 
 })
 
+
+
 app.post('/tutorial', urlencodedParser, function(request, response){
   var problem_name = 'tutorial_'
-
 	console.log('request (post) was made: ' + request.url);
   var parsedProgram = JSON.parse(request.body.user_program)
 	//grab text bodies
 	var up_code = parsedProgram.up_code
 	var up_examples = parsedProgram.up_examples
+  var mode = parsedProgram.mode //'pbe' or 'eval'
 
-  // var up_code = request.body.up_code
-  // var up_examples = request.body.up_examples
 	//savefiles in hidden folder tmp
 	var userFolder = 'tmp/' + request.cookies.uCookie + '/'
-  console.log(userFolder)
 	fs.writeFileSync(userFolder + problem_name +'code.js', up_code)
 	fs.writeFileSync(userFolder + problem_name +'code.js.examples', up_examples)
   var path = userFolder +problem_name +'code.js.sl'
-	//console.log("begin: updateCodeEvalJS")
-  console.log("before reeval" + up_code)
-  var res = updateCodeEvalJS(up_code, parseExamples(up_examples), path)
-    //came out of pbe and cvc4 couldn't generate an appropriate function
-    if (res.newExamples === null && res.newCode == up_code){
+
+  var res = updateCodeEvalJS(up_code, parseExamples(up_examples.trim()), path)
+  var up = parseResponse(up_code, up_examples, res, mode)
+	response.send(up);
+
+});
+
+
+
+function parseResponse(up_code, up_examples, res, mode){
+  if(mode == 'eval' || mode == "equal eval"){
+    console.log('in eval')
+    if (res.newExamples != null) {//eval sucess
       var up = {
-        change: 'no change',
+        change: 'reeval',
+        code: up_code,
+        examples: writeExamples(res.newExamples)
+      }
+    }else{//eval error
+      var up = {
+        change: 'code eval error',
+        code: up_code,
+        examples: up_examples
+      }
+    }
+  }
+  else{ //mode == 'pbe' (there are only two modes)
+    console.log('in pbe')
+    if (res.newCode !== null && res.newCode != up_code) {//pbe success
+      var up = {
+        change: 'pbe',
+    		code: res.newCode,
+    		examples: up_examples
+      }
+    }else{//pbe failed (res.newExamples === null && res.newCode == up_code)
+      var up = {
+        change: 'pbe synth error',
         code: up_code,
         examples: up_examples,
         pbeStatus: "pbe synthesis failed, please try new examples"
       }
     }
-    //pbe
-    if (res.newCode !== null && res.newCode != up_code) {
-      console.log('pbe')
-      var up = {
-        change: 'pbe',
-    		code: res.newCode,
-    		examples: up_examples
-    	}
-      //setCode(pbeFile, res.newCode);
-    }
-    //reeval
-    if (res.newExamples != null) {
-      console.log('reeval')
-      var up = {
-        change: 'reeval',
-        code: up_code,
-    		examples: writeExamples(res.newExamples)
-    	}
-      //setExamples(res.newExamples);
-    }
-	response.send(up);
-
-});
+  }
+  return up
+}

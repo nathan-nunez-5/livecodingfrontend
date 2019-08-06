@@ -21,7 +21,7 @@ $(document).ready(function(){
     // = synthesis
     if(keyPressedValue == "="){
       var doc = editor.getDoc()
-      sendPost(doc, 'pbe')
+      sendPost(doc, 'equal eval')
     }
     //enter-synthesis
     if(keyPressedValue == "Enter"){

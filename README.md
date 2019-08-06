@@ -66,11 +66,11 @@ progress:
 - [x] synthesis fires on enter key pressed
 - [x] (fixed) chrome doesn't fire with = synthesis
 - [x] make language for alert more clear
+- [x] get rid of = null for empty line
+- [x] when you in pbe mode you can't do reeeval
 
 
 TODOS:
-- [ ] get rid of = null for empty line
-- [ ] when you in pbe mode you can't do reeeval
 - [ ] detail motivations for each question
 - [ ] improve tutorial (make limitations for PBE clear)
 - [ ] create a gimme problem in or after tutorial
