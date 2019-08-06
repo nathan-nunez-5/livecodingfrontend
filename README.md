@@ -71,6 +71,7 @@ progress:
 
 
 TODOS:
+- [ ] reeval should happen when examples change ***
 - [ ] detail motivations for each question
 - [ ] improve tutorial (make limitations for PBE clear)
 - [ ] create a gimme problem in or after tutorial
