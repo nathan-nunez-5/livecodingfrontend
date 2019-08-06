@@ -53,16 +53,6 @@ app.use('/assets', express.static('assets'))
 app.get('/', function(request, response){
 	var start_code = ''
 	var start_examples = ''
-	// var items = fs.readdirSync('./tmp')
-	// console.log(items)
-	// if(items.includes('code.txt')){
-	// 	start_code = fs.readFileSync('./tmp/code.txt', 'utf8')
-	// 	console.log('code.txt has been uploaded')
-	// }
-	// if(items.includes('examples.txt')){
-	// 	start_examples = fs.readFileSync('./tmp/examples.txt', 'utf8')
-	// 	console.log('examples.txt has been uploaded')
-	// }
 	var up = {
 		code: start_code,
 		examples: start_examples,
@@ -80,40 +70,37 @@ var updateCodeEvalJS = backendFxns.updateCodeEvalJS
 app.post('/', urlencodedParser, function(request, response){
 	console.log('request (post) was made: ' + request.url);
   var parsedProgram = JSON.parse(request.body.user_program)
-	//grab text bodies
 	var up_code = parsedProgram.up_code
 	var up_examples = parsedProgram.up_examples
+  //'pbe' or 'eval'
+  var mode = parsedProgram.mode
 
-  // var up_code = request.body.up_code
-  // var up_examples = request.body.up_examples
 	//savefiles in hidden folder tmp
 	var userFolder = 'tmp/' + request.cookies.uCookie + '/'
 	fs.writeFileSync(userFolder + 'code.js', up_code)
 	fs.writeFileSync(userFolder + 'code.js.examples', up_examples)
-	// console.log(up_code)
-	// console.log(up_examples)
 
 	//the atom interface we need trim before we parse
-	//write parseExamples
 	//var newExamples = writeExamples(reeval(up_code, parseExamples(up_examples)))
-	// var up = {
-	// 	code: up_code,
-	// 	examples: newExamples
-	// }
 
   var path = userFolder +'code.js.sl'
-	//console.log("begin: updateCodeEvalJS")
   console.log("before reeval" + up_code)
   var res = updateCodeEvalJS(up_code, parseExamples(up_examples), path)
-    //came out of pbe and cvc4 couldn't generate an appropriate function
-    if (res.newExamples === null && res.newCode == up_code){
-      var up = {
-        change: 'no change',
-        code: up_code,
-        examples: up_examples,
-        pbeStatus: "pbe synthesis failed, please try new examples"
-      }
+
+  if(mode == 'eval'){
+    console.log('in eval')
+  }else{ //mode == 'pbe' (there are only two modes)
+    console.log('in pbe')
+  }
+  //came out of pbe and cvc4 couldn't generate an appropriate function
+  if (res.newExamples === null && res.newCode == up_code){
+    var up = {
+      change: 'no change',
+      code: up_code,
+      examples: up_examples,
+      pbeStatus: "pbe synthesis failed, please try new examples"
     }
+  }
     //pbe
     if (res.newCode !== null && res.newCode != up_code) {
       console.log('pbe')

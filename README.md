@@ -64,20 +64,20 @@ progress:
 - [x] add a link to the bottom of problems to close window
 - [x] add button to approach did you find a solution
 - [x] synthesis fires on enter key pressed
+- [x] (fixed) chrome doesn't fire with = synthesis
+- [x] make language for alert more clear
+
 
 TODOS:
+- [ ] get rid of = null for empty line
+- [ ] when you in pbe mode you can't do reeeval
+- [ ] detail motivations for each question
+- [ ] improve tutorial (make limitations for PBE clear)
+- [ ] create a gimme problem in or after tutorial
+- [ ] give alerts only when can't run and when pbe window is in focus (when function reeeval doesn't work don't send an alert)
+
+
+
 - [ ] fix that when you have an undefined example it takes two loads for it to get back into being live
 - [ ] seperate interface helpers code out of app.js
-- [ ] sort TODOS
-- [ ] look into lines change in example window
-- [ ] synthesis fires every time its well formatted
-- [ ] get some message when synthesis engine couldn't do it
 - [ ] record js evaluations
-- [ ] chrome doesn't fire with = synthesis
-- [ ] get rid of = null for empty line
-
-Pilot TODOS:
-- [ ] give alerts only when can't run and when pbe window is in focus (when function reeeval doesn't work don't send an alert)
-- [ ] make language for alert more clear
-- [ ] make limitations for PBE clear
-- [ ] make tutorial extra clear

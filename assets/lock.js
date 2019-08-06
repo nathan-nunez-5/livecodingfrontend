@@ -1,5 +1,6 @@
 var lock = false
-function sendPost(doc = null){
+//focus is 'eval' or 'pbe'
+function sendPost(doc, focus){
   if (lock) {return;}
   lock = true
   if(doc != null){
@@ -13,7 +14,8 @@ function sendPost(doc = null){
   if(code == '' || examples == ''){lock = false; return }
   var params = {
     up_code: code,
-    up_examples: examples
+    up_examples: examples,
+    mode: focus
   }
   //use comments to check if we using the correct url
   var currenturl = document.URL

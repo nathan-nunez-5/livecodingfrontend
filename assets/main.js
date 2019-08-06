@@ -7,12 +7,12 @@ $(document).ready(function(){
   })
   editor.on('inputRead', function(editor, change){
     var doc = editor.getDoc()
-    sendPost(doc)
+    sendPost(doc, 'eval')
   })
   //lose focus synthesis
   $('#up_examples').change(function(){
     var doc = editor.getDoc()
-    sendPost(doc)
+    sendPost(doc, 'pbe')
    })
 
   $('#up_examples').keydown(function(e){
@@ -21,12 +21,12 @@ $(document).ready(function(){
     // = synthesis
     if(keyPressedValue == "="){
       var doc = editor.getDoc()
-      sendPost(doc)
+      sendPost(doc, 'pbe')
     }
     //enter-synthesis
     if(keyPressedValue == "Enter"){
-        var doc = editor.getDoc()
-        sendPost(doc)
+      var doc = editor.getDoc()
+      sendPost(doc, 'pbe')
     }
   })
    //triggers

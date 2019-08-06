@@ -42,8 +42,12 @@ function ajaxCall(path, params, doc, method = 'POST'){
         case 'reeval':
           document.getElementById('up_examples').value = up.examples
           break;
+        case 'pbe synth error':
+          break;
+        case 'code eval error':
+          break;
         default:
-          alert("pbe synthesis failed, type in new examples")
+          alert("pbe synthesis failed to generate a function")
           break;
 
       }
