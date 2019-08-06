@@ -43,11 +43,12 @@ function ajaxCall(path, params, doc, method = 'POST'){
           document.getElementById('up_examples').value = up.examples
           break;
         case 'pbe synth error':
+          alert("pbe synthesis failed to generate a function")
           break;
         case 'code eval error':
           break;
         default:
-          alert("pbe synthesis failed to generate a function")
+          alert("default case")
           break;
 
       }
