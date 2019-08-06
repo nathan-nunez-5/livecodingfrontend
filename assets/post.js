@@ -48,7 +48,7 @@ function ajaxCall(path, params, doc, method = 'POST'){
         case 'code eval error':
           break;
         default:
-          alert("default case")
+          console.log("default msg")
           break;
 
       }

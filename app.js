@@ -246,18 +246,28 @@ function parseResponse(up_code, up_examples, res, mode){
   }
   else{ //mode == 'pbe' (there are only two modes)
     console.log('in pbe')
-    if (res.newCode !== null && res.newCode != up_code) {//pbe success
+    if (res.newCode != null && res.newCode != up_code) {//pbe success
+      console.log('s')
       var up = {
         change: 'pbe',
     		code: res.newCode,
     		examples: up_examples
       }
-    }else{//pbe failed (res.newExamples === null && res.newCode == up_code)
+    }else  if (res.newExamples === null && res.newCode == up_code){//pbe failed (res.newExamples === null && res.newCode == up_code)
+      console.log('e')
       var up = {
         change: 'pbe synth error',
         code: up_code,
         examples: up_examples,
         pbeStatus: "pbe synthesis failed, please try new examples"
+      }
+    }
+    else{
+      console.log('d')
+      var up = {
+        change: 'pbe no change',
+        code: up_code,
+        examples: up_examples,
       }
     }
   }
