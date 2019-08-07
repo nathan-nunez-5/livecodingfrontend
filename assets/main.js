@@ -36,7 +36,6 @@ $(document).ready(function(){
   $('#up_examples').on('input', function(e){
     var ex_text = $('#up_examples').val()
     if(ex_text.charAt(ex_text.length - 1) != '\n'){
-      console.log('engaged')
       var cursorPos = $('#up_examples')[0].selectionStart
       var ex_lines = ex_text.split('\n')
       if(ex_lines.length == 1){

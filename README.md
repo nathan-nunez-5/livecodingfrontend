@@ -72,8 +72,6 @@ progress:
 - [x] reeval should happen when examples change ***
 
 
-
-
 TODOS:
 - [ ] make sure we are logging reeval requests
 - [ ] make sure we logging behavior of window usage
@@ -83,8 +81,4 @@ TODOS:
 - [ ] give alerts only when can't run and when pbe window is in focus (when function reeeval doesn't work don't send an alert)
 - [ ] add one question and see what you can do with synthesis
 
-
-
 - [ ] fix that when you have an undefined example it takes two loads for it to get back into being live
-- [ ] seperate interface helpers code out of app.js
-- [ ] record js evaluations

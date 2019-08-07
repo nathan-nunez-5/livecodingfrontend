@@ -85,7 +85,6 @@ app.post('/', urlencodedParser, function(request, response){
   //reeval/pbe
   var res = updateCodeEvalJS(up_code, parseExamples(up_examples.trim()), path)
   var up = parseResponse(up_code, up_examples, res, mode, cursorPos)
-  console.log(up.fixCursor)
 	response.send(up);
 });
 
@@ -254,14 +253,12 @@ function parseResponse(up_code, up_examples, res, mode, cursorPos){
   else{ //mode == 'pbe' (there are only two modes)
     console.log('in pbe')
     if (res.newCode != null && res.newCode != up_code) {//pbe success
-      console.log('s')
       var up = {
         change: 'pbe',
     		code: res.newCode,
     		examples: up_examples
       }
     }else  if (res.newExamples === null && res.newCode == up_code){//pbe failed (res.newExamples === null && res.newCode == up_code)
-      console.log('e')
       var up = {
         change: 'pbe synth error',
         code: up_code,
@@ -270,7 +267,6 @@ function parseResponse(up_code, up_examples, res, mode, cursorPos){
       }
     }
     else{
-      console.log('d')
       var up = {
         change: 'pbe no change',
         code: up_code,
