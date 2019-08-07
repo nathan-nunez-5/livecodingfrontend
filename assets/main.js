@@ -11,34 +11,54 @@ $(document).ready(function(){
   })
   //lose focus synthesis
   $('#up_examples').change(function(){
+    var ex_text = $('#up_examples').val()
     var doc = editor.getDoc()
     sendPost(doc, 'pbe')
    })
 
-  $('#up_examples').keydown(function(e){
-    //console.log(e)
-    var keyPressedValue = e.originalEvent.key
-    // = synthesis
-    if(keyPressedValue == "="){
-      var doc = editor.getDoc()
-      sendPost(doc, 'equal eval')
-    }
-    //enter-synthesis
-    if(keyPressedValue == "Enter"){
-      var doc = editor.getDoc()
-      sendPost(doc, 'pbe')
+   //character dependent live triggers
+   $('#up_examples').keydown(function(e){
+     //console.log(e)
+     var keyPressedValue = e.originalEvent.key
+     // =-evaluation
+     if(keyPressedValue == "="){
+       var doc = editor.getDoc()
+       sendPost(doc, 'equal eval')
+     }
+     //enter-synthesis
+     if(keyPressedValue == "Enter"){
+       var doc = editor.getDoc()
+       sendPost(doc, 'pbe')
+     }
+   })
+
+   //detects change in example input, fires evaluation
+  $('#up_examples').on('input', function(e){
+    var ex_text = $('#up_examples').val()
+    if(ex_text.charAt(ex_text.length - 1) != '\n'){
+      console.log('engaged')
+      var cursorPos = $('#up_examples')[0].selectionStart
+      var ex_lines = ex_text.split('\n')
+      if(ex_lines.length == 1){
+        var currLine = ex_text
+        var inLineCursorPos = cursorPos
+      }else{
+        var beforeCursor = ex_text.substring(0, cursorPos)
+        var lastNew = beforeCursor.lastIndexOf('\n')
+        var prevLinesBuffer = beforeCursor.substring(0, lastNew+1).length
+        var numOfPreviousLines = (beforeCursor.match(/\n/g) || '').length
+        var currLine = ex_lines[numOfPreviousLines]
+        var inLineCursorPos = cursorPos - (lastNew + 1)
+      }
+      var openParen = currLine.indexOf('(')
+      var closeParen = currLine.indexOf(')')
+      if((openParen + 1) != closeParen && (openParen < inLineCursorPos && inLineCursorPos <= closeParen)){
+        var doc = editor.getDoc()
+        sendPost(doc, 'input eval', cursorPos)
+      }
     }
   })
-   //triggers
-   // $('#up_code').on('input',function(editor){
-   //    console.log('gotcode')
-   //    sendPost()
-   //  })
-   //  $('#up_examples').change(function(editor){
-   //     console.log('gotex')
-   //     sendPost()
-   //   })
-})
+}) //end of jquery triggers
 
 function renderTable(samples){
   //console.log(samples)

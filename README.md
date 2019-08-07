@@ -68,14 +68,20 @@ progress:
 - [x] make language for alert more clear
 - [x] get rid of = null for empty line
 - [x] when you in pbe mode you can't do reeeval
+- [x] detail motivations for each question
+- [x] reeval should happen when examples change ***
+
+
 
 
 TODOS:
-- [ ] reeval should happen when examples change ***
-- [ ] detail motivations for each question
+- [ ] make sure we are logging reeval requests
+- [ ] make sure we logging behavior of window usage
+
+- [ ] include data collected
 - [ ] improve tutorial (make limitations for PBE clear)
-- [ ] create a gimme problem in or after tutorial
 - [ ] give alerts only when can't run and when pbe window is in focus (when function reeeval doesn't work don't send an alert)
+- [ ] add one question and see what you can do with synthesis
 
 
 

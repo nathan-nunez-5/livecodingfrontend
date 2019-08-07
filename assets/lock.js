@@ -1,6 +1,6 @@
 var lock = false
 //focus is 'eval' or 'pbe'
-function sendPost(doc, focus){
+function sendPost(doc, focus, cursorPos){
   if (lock) {return;}
   lock = true
   if(doc != null){
@@ -15,7 +15,8 @@ function sendPost(doc, focus){
   var params = {
     up_code: code,
     up_examples: examples,
-    mode: focus
+    mode: focus,
+    cursorPos: cursorPos
   }
   //use comments to check if we using the correct url
   var currenturl = document.URL

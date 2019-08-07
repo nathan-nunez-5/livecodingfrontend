@@ -41,6 +41,12 @@ function ajaxCall(path, params, doc, method = 'POST'){
           break;
         case 'reeval':
           document.getElementById('up_examples').value = up.examples
+          if(up.fixCursor != null || up.fixCursor != undefined){
+            //console.log('hello')
+            //console.log('ho', up.fixCursor)
+            setCaretPosition('up_examples', up.fixCursor)
+
+          }
           break;
         case 'pbe synth error':
           alert("pbe synthesis failed to generate a function")
@@ -48,7 +54,7 @@ function ajaxCall(path, params, doc, method = 'POST'){
         case 'code eval error':
           break;
         default:
-          console.log("default msg")
+          //console.log("default msg")
           break;
 
       }
@@ -57,4 +63,39 @@ function ajaxCall(path, params, doc, method = 'POST'){
   var json = JSON.stringify(params)
   //we encode so that we don't lose our '+' char
   xhr.send("user_program="+ encodeURIComponent(json))
+}
+
+
+// from https://stackoverflow.com/questions/512528/set-keyboard-caret-position-in-html-textbox
+function setCaretPosition(elemId, caretPos) {
+    var el = document.getElementById(elemId);
+
+    el.value = el.value;
+    // ^ this is used to not only get "focus", but
+    // to make sure we don't have it everything -selected-
+    // (it causes an issue in chrome, and having it doesn't hurt any other browser)
+
+    if (el !== null) {
+
+        if (el.createTextRange) {
+            var range = el.createTextRange();
+            range.move('character', caretPos);
+            range.select();
+            return true;
+        }
+
+        else {
+            // (el.selectionStart === 0 added for Firefox bug)
+            if (el.selectionStart || el.selectionStart === 0) {
+                el.focus();
+                el.setSelectionRange(caretPos, caretPos);
+                return true;
+            }
+
+            else  { // fail city, fortunately this never happens (as far as I've tested) :)
+                el.focus();
+                return false;
+            }
+        }
+    }
 }

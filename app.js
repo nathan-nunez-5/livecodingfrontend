@@ -74,6 +74,7 @@ app.post('/', urlencodedParser, function(request, response){
 	var up_code = parsedProgram.up_code
 	var up_examples = parsedProgram.up_examples
   var mode = parsedProgram.mode //'pbe' or 'eval'
+  var cursorPos = parsedProgram.cursorPos
 
 	//savefiles in hidden folder tmp
 	var userFolder = 'tmp/' + request.cookies.uCookie + '/'
@@ -83,7 +84,8 @@ app.post('/', urlencodedParser, function(request, response){
 
   //reeval/pbe
   var res = updateCodeEvalJS(up_code, parseExamples(up_examples.trim()), path)
-  var up = parseResponse(up_code, up_examples, res, mode)
+  var up = parseResponse(up_code, up_examples, res, mode, cursorPos)
+  console.log(up.fixCursor)
 	response.send(up);
 });
 
@@ -147,6 +149,8 @@ app.post('/problems/:key', urlencodedParser, function(request, response){
 	var up_code = parsedProgram.up_code
 	var up_examples = parsedProgram.up_examples
   var mode = parsedProgram.mode //'pbe' or 'eval'
+  var cursorPos = parsedProgram.cursorPos
+
 
 	var userFolder = 'tmp/' + request.cookies.uCookie + '/'
 	fs.writeFileSync(userFolder + problem_name +'code.js', up_code)
@@ -154,7 +158,7 @@ app.post('/problems/:key', urlencodedParser, function(request, response){
   var path = userFolder +problem_name +'code.js.sl'
 
   var res = updateCodeEvalJS(up_code, parseExamples(up_examples.trim()), path)
-  var up = parseResponse(up_code, up_examples, res, mode)
+  var up = parseResponse(up_code, up_examples, res, mode, cursorPos)
 	response.send(up);
 });
 
@@ -212,6 +216,7 @@ app.post('/tutorial', urlencodedParser, function(request, response){
 	var up_code = parsedProgram.up_code
 	var up_examples = parsedProgram.up_examples
   var mode = parsedProgram.mode //'pbe' or 'eval'
+  var cursorPos = parsedProgram.cursorPos
 
 	//savefiles in hidden folder tmp
 	var userFolder = 'tmp/' + request.cookies.uCookie + '/'
@@ -220,27 +225,29 @@ app.post('/tutorial', urlencodedParser, function(request, response){
   var path = userFolder +problem_name +'code.js.sl'
 
   var res = updateCodeEvalJS(up_code, parseExamples(up_examples.trim()), path)
-  var up = parseResponse(up_code, up_examples, res, mode)
+  var up = parseResponse(up_code, up_examples, res, mode, cursorPos)
 	response.send(up);
 
 });
 
 
 
-function parseResponse(up_code, up_examples, res, mode){
-  if(mode == 'eval' || mode == "equal eval"){
+function parseResponse(up_code, up_examples, res, mode, cursorPos){
+  if(mode == 'eval' || mode == "equal eval" || mode == "input eval"){
     console.log('in eval')
     if (res.newExamples != null) {//eval sucess
       var up = {
         change: 'reeval',
         code: up_code,
-        examples: writeExamples(res.newExamples)
+        examples: writeExamples(res.newExamples),
+        fixCursor: ((mode == 'input eval') ? cursorPos : null)
       }
     }else{//eval error
       var up = {
         change: 'code eval error',
         code: up_code,
-        examples: up_examples
+        examples: up_examples,
+        fixCursor: ((mode == 'input eval') ? cursorPos : null)
       }
     }
   }
