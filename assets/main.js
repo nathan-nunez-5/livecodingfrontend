@@ -35,8 +35,9 @@ $(document).ready(function(){
    //detects change in example input, fires evaluation
   $('#up_examples').on('input', function(e){
     var ex_text = $('#up_examples').val()
-    if(ex_text.charAt(ex_text.length - 1) != '\n'){
-      var cursorPos = $('#up_examples')[0].selectionStart
+    var cursorPos = $('#up_examples')[0].selectionStart
+    if(ex_text.charAt(cursorPos - 1) != '\n'){//last key pressed was not enter
+      console.log("engaged")
       var ex_lines = ex_text.split('\n')
       if(ex_lines.length == 1){
         var currLine = ex_text
