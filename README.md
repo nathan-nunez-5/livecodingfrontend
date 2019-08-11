@@ -69,16 +69,25 @@ progress:
 - [x] get rid of = null for empty line
 - [x] when you in pbe mode you can't do reeeval
 - [x] detail motivations for each question
-- [x] reeval should happen when examples change ***
+- [x] reeval should happen when examples change
+- [x] give alerts only when can't run and when pbe window is in focus (when function reeeval doesn't work don't send an alert)
+- [x] Add 5th problem/add one question and see what you can do with synthesis
 
 
 TODOS:
-- [ ] make sure we are logging reeval requests
-- [ ] make sure we logging behavior of window usage
-
-- [ ] include data collected
+- [ ] make sure we are logging reeval requests***
+- [ ] change absolute value first question tutorial
+- [ ] csv timestamp window, what changed, eval/synth/, failure?
+- [ ] add extra exampls p2
+- [ ] change the 3-length string ->
+- [ ] make sure we logging behavior of window usage***
+- [ ] box implementsation
+- [ ] csv log file
+- [ ] regular log file
+- [ ] look at reasearch questions again
+- [ ] exit button
+- [ ] init funciton when in pbe window and not inited in live
+- [ ] ask where we want to measure time
+- [ ] ask how he wants to measure stuff
 - [ ] improve tutorial (make limitations for PBE clear)
-- [ ] give alerts only when can't run and when pbe window is in focus (when function reeeval doesn't work don't send an alert)
-- [ ] add one question and see what you can do with synthesis
-
 - [ ] fix that when you have an undefined example it takes two loads for it to get back into being live

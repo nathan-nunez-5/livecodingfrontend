@@ -6,7 +6,7 @@
       "output": "3"
     },
     {
-      "input": "double(2)",
+      "input": "double(3)",
       "output": "5"
     }
   ]
