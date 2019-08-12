@@ -3,6 +3,8 @@ $(document).ready(function(){
   var codeArea = $("#up_code")[0]
   var editor = CodeMirror.fromTextArea(codeArea, {
     lineNumbers : true,
+    matchBrackets : true,
+    autoCloseBrackets : true,
     mode : "javascript"
   })
   editor.on('inputRead', function(editor, change){

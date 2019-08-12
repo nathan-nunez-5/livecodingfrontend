@@ -2,8 +2,8 @@
   "sample_num": 2,
   "sample_pairs": [
     {
-      "input": "yo(1, 2)",
-      "output": "3"
+      "input": "absoluteValue(-4)",
+      "output": "4"
     },
     {
       "input": "double(3)",

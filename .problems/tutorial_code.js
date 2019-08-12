@@ -1,5 +1,9 @@
-function yo(x, y) {
-  return x + 1;
+function absoluteValue(x) {
+  if(x > 0){
+    return x;
+  }else{
+    return (-1*x);
+  }
 }
 
 function double(z){

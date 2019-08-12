@@ -72,22 +72,22 @@ progress:
 - [x] reeval should happen when examples change
 - [x] give alerts only when can't run and when pbe window is in focus (when function reeeval doesn't work don't send an alert)
 - [x] Add 5th problem/add one question and see what you can do with synthesis
+- [x] add extra exampls p2
+- [x] exit button [not doable in firefox] see: https://developer.mozilla.org/en-US/docs/Web/API/Window/close#Closing_the_current_window
+
 
 
 TODOS:
-- [ ] make sure we are logging reeval requests***
 - [ ] change absolute value first question tutorial
-- [ ] csv timestamp window, what changed, eval/synth/, failure?
-- [ ] add extra exampls p2
-- [ ] change the 3-length string ->
+- [ ] csv log file: timestamp, window, what changed, eval/synth/, failure?
+- [ ] change the 3-length string -> lie the pundefined problem
 - [ ] make sure we logging behavior of window usage***
-- [ ] box implementsation
-- [ ] csv log file
 - [ ] regular log file
-- [ ] look at reasearch questions again
-- [ ] exit button
 - [ ] init funciton when in pbe window and not inited in live
-- [ ] ask where we want to measure time
-- [ ] ask how he wants to measure stuff
+
 - [ ] improve tutorial (make limitations for PBE clear)
 - [ ] fix that when you have an undefined example it takes two loads for it to get back into being live
+
+- [ ] look at research questions again
+
+- [ ] box implementation
