@@ -6,13 +6,27 @@ var cookieParser = require('cookie-parser')
 var app = express()
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
+var dataPath = 'tmp'
+var logsPath = dataPath + '/logs'
+
 const port = 80
 app.listen(port);
 //console.log('now listening to port ' + port)
 
 var mkdirp = require('mkdirp')
-mkdirp('tmp', function(err) {
+mkdirp(dataPath, function(err) {
     // path exists unless there was an error
+    if(err){
+      console.log('no'+dataPath)
+    }else{
+      mkdirp(logsPath, function(err2){
+        if(err2){
+          console.log('no' + dataPath)
+        }else{
+          //console.log("csv/logs folder ");
+        }
+      })
+    }
 });
 
 //app.use('/assets', express.static('assets'))
@@ -40,7 +54,7 @@ app.use(function (request, response, next) {
 
 // let static middleware do its job
 app.use(function (request, response, next){
-	var userFolder = 'tmp/' + request.cookies.uCookie
+	var userFolder = dataPath +'/' + request.cookies.uCookie
   if(userFolder !== undefined){
 		mkdirp(userFolder, function(err) {
 			//path exists unless it don't
@@ -77,7 +91,7 @@ app.post('/', urlencodedParser, function(request, response){
   var cursorPos = parsedProgram.cursorPos
 
 	//savefiles in hidden folder tmp
-	var userFolder = 'tmp/' + request.cookies.uCookie + '/'
+	var userFolder = dataPath + '/' + request.cookies.uCookie + '/'
 	fs.writeFileSync(userFolder + 'code.js', up_code)
 	fs.writeFileSync(userFolder + 'code.js.examples', up_examples)
   var path = userFolder +'code.js.sl'
@@ -151,7 +165,7 @@ app.post('/problems/:key', urlencodedParser, function(request, response){
   var cursorPos = parsedProgram.cursorPos
 
 
-	var userFolder = 'tmp/' + request.cookies.uCookie + '/'
+	var userFolder = dataPath +'/' + request.cookies.uCookie + '/'
 	fs.writeFileSync(userFolder + problem_name +'code.js', up_code)
 	fs.writeFileSync(userFolder + problem_name +'code.js.examples', up_examples)
   var path = userFolder +problem_name +'code.js.sl'
@@ -218,7 +232,7 @@ app.post('/tutorial', urlencodedParser, function(request, response){
   var cursorPos = parsedProgram.cursorPos
 
 	//savefiles in hidden folder tmp
-	var userFolder = 'tmp/' + request.cookies.uCookie + '/'
+	var userFolder = dataPath +'/' + request.cookies.uCookie + '/'
 	fs.writeFileSync(userFolder + problem_name +'code.js', up_code)
 	fs.writeFileSync(userFolder + problem_name +'code.js.examples', up_examples)
   var path = userFolder +problem_name +'code.js.sl'
@@ -275,4 +289,18 @@ function parseResponse(up_code, up_examples, res, mode, cursorPos){
     }
   }
   return up
+}
+/**
+  * @desc saves 2 log files, csv that is easy to parse (timestamp, active_window, change_tag, eval_or_pbe, success_tag\n),
+  *       and a more detailed log file that saves current instances of program before and after processing codetith
+  *      log file format: @$timestamp $post_trigger was triggered in active window $active_window.\n
+  *      \treceived incoming code: $incoming_code and incoming_examples $incoming_examples\n
+  *      \tperformed $eval_or_pbe with $success_tag\n
+  *      \tstatus: $change_tag with outcoming code: $outcoming_code and outcoming_examples $outcoming_examples\n
+  * @param string $msg - the message to be displayed
+  * @return bool - success or failure
+*/
+function saveData(path, timestamp, active_window, change_tag, changed_content, eval_or_pbe, success_tag, post_trigger, prev_code, prev_examples){
+
+
 }

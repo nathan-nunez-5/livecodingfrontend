@@ -74,16 +74,24 @@ progress:
 - [x] Add 5th problem/add one question and see what you can do with synthesis
 - [x] add extra exampls p2
 - [x] exit button [not doable in firefox] see: https://developer.mozilla.org/en-US/docs/Web/API/Window/close#Closing_the_current_window
+- [x] change absolute value first question tutorial
+
 
 
 
 TODOS:
-- [ ] change absolute value first question tutorial
-- [ ] csv log file: timestamp, window, what changed, eval/synth/, failure?
-- [ ] change the 3-length string -> lie the pundefined problem
-- [ ] make sure we logging behavior of window usage***
-- [ ] regular log file
+- [ ] csv data file: timestamp, window, what changed, eval/synth/, failure?
+https://stackabuse.com/reading-and-writing-csv-files-with-node-js/
+https://www.w3schools.com/nodejs/nodejs_filesystem.asp
+https://stackoverflow.com/questions/3459476/how-to-append-to-a-file-in-node/43370201#43370201
+https://stackoverflow.com/questions/3459476/how-to-append-to-a-file-in-node
+https://stackabuse.com/writing-to-files-in-node-js/
+
+
+- [ ] detailed data: log file
 - [ ] init funciton when in pbe window and not inited in live
+
+- [ ] change the 3-length string -> lie the pundefined problem
 
 - [ ] improve tutorial (make limitations for PBE clear)
 - [ ] fix that when you have an undefined example it takes two loads for it to get back into being live
