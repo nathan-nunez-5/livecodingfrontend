@@ -396,8 +396,7 @@ function parseResponse(up_code, up_examples, res, trigger, cursorPos){
   *      \treceived incoming code: $incoming_code and incoming_examples $incoming_examples\n
   *      \tperformed $eval_or_pbe with $success_tag\n
   *      \tstatus: $change_tag change with outcoming code: $outcoming_code and outcoming_examples $outcoming_examples\n
-  * @param
-*/
+  */
 function saveData(csvPath, logPath, timestamp, active_window, eval_or_pbe, change_tag, success_tag, post_trigger, incoming_code, incoming_examples, outcoming_code, outcoming_examples)
 {
   var appendingToLog = `@${timestamp} ${post_trigger} request was received in ${active_window}.
