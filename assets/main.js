@@ -9,13 +9,13 @@ $(document).ready(function(){
   })
   editor.on('inputRead', function(editor, change){
     var doc = editor.getDoc()
-    sendPost(doc, 'eval')
+    sendPost(doc, 'eval', 'live code eval')
   })
   //lose focus synthesis
   $('#up_examples').change(function(){
     var ex_text = $('#up_examples').val()
     var doc = editor.getDoc()
-    sendPost(doc, 'pbe')
+    sendPost(doc, 'pbe', 'window lost focus pbe')
    })
 
    //character dependent live triggers
@@ -25,12 +25,12 @@ $(document).ready(function(){
      // =-evaluation
      if(keyPressedValue == "="){
        var doc = editor.getDoc()
-       sendPost(doc, 'equal eval')
+       sendPost(doc, 'pbe', 'equal eval')
      }
      //enter-synthesis
      if(keyPressedValue == "Enter"){
        var doc = editor.getDoc()
-       sendPost(doc, 'pbe')
+       sendPost(doc, 'pbe', 'newline pbe')
      }
    })
 
@@ -56,7 +56,7 @@ $(document).ready(function(){
       var closeParen = currLine.indexOf(')')
       if((openParen + 1) != closeParen && (openParen < inLineCursorPos && inLineCursorPos <= closeParen)){
         var doc = editor.getDoc()
-        sendPost(doc, 'input eval', cursorPos)
+        sendPost(doc, 'pbe', 'changed input eval', cursorPos)
       }
     }
   })

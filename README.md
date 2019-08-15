@@ -75,27 +75,21 @@ progress:
 - [x] add extra exampls p2
 - [x] exit button [not doable in firefox] see: https://developer.mozilla.org/en-US/docs/Web/API/Window/close#Closing_the_current_window
 - [x] change absolute value first question tutorial
+- [x] csv data file: timestamp, window, what changed, eval/synth/, failure?
+- [x] detailed data: log file
+
 
 
 
 
 TODOS:
-- [ ] csv data file: timestamp, window, what changed, eval/synth/, failure?
-https://stackabuse.com/reading-and-writing-csv-files-with-node-js/
-https://www.w3schools.com/nodejs/nodejs_filesystem.asp
-https://stackoverflow.com/questions/3459476/how-to-append-to-a-file-in-node/43370201#43370201
-https://stackoverflow.com/questions/3459476/how-to-append-to-a-file-in-node
-https://stackabuse.com/writing-to-files-in-node-js/
+- [ ] drive implementation
+- [ ] https://getbootstrap.com/docs/4.0/examples/carousel/  improve tutorial (make limitations for PBE clear)
 
-
-- [ ] detailed data: log file
 - [ ] init funciton when in pbe window and not inited in live
 
 - [ ] change the 3-length string -> lie the pundefined problem
 
-- [ ] improve tutorial (make limitations for PBE clear)
 - [ ] fix that when you have an undefined example it takes two loads for it to get back into being live
 
 - [ ] look at research questions again
-
-- [ ] box implementation

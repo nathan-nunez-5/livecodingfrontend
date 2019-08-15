@@ -14,7 +14,6 @@ function ajaxCall(path, params, doc, method = 'POST'){
           document.getElementById('up_examples').value = up.examples
           if(up.fixCursor != null || up.fixCursor != undefined){
             setCaretPosition('up_examples', up.fixCursor)
-
           }
           break;
         case 'pbe synth error':

@@ -3,11 +3,17 @@ var http = require('http')
 var fs = require('fs')
 var bodyParser = require('body-parser')
 var cookieParser = require('cookie-parser')
+var json2csv = require('json2csv')
 var app = express()
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
+//paths for data
 var dataPath = 'tmp'
 var logsPath = dataPath + '/logs'
+
+//csv vars
+var csvFields = ['Timestamp', 'Active_Window', 'Eval_or_PBE', 'Change_Tag', 'Changed_Content', 'Success_Tag']
+var newLine = '\r\n'
 
 const port = 80
 app.listen(port);
@@ -17,13 +23,44 @@ var mkdirp = require('mkdirp')
 mkdirp(dataPath, function(err) {
     // path exists unless there was an error
     if(err){
-      console.log('no'+dataPath)
+      console.log('no' + dataPath)
     }else{
       mkdirp(logsPath, function(err2){
         if(err2){
           console.log('no' + dataPath)
         }else{
           //console.log("csv/logs folder ");
+          mkdirp(logsPath+'/p1', function(err2){
+            if(err2){
+              console.log('no p1')
+            }else{
+            }
+          })
+          mkdirp(logsPath+'/p2', function(err2){
+            if(err2){
+              console.log('no p2')
+            }else{
+            }
+          })
+          mkdirp(logsPath+'/p3', function(err2){
+            if(err2){
+              console.log('no p3')
+            }else{
+            }
+          })
+          mkdirp(logsPath+'/p4', function(err2){
+            if(err2){
+              console.log('no p4')
+            }else{
+            }
+          })
+          mkdirp(logsPath+'/p5', function(err2){
+            if(err2){
+              console.log('no p5')
+            }else{
+
+            }
+          })
         }
       })
     }
@@ -87,7 +124,7 @@ app.post('/', urlencodedParser, function(request, response){
   var parsedProgram = JSON.parse(request.body.user_program)
 	var up_code = parsedProgram.up_code
 	var up_examples = parsedProgram.up_examples
-  var mode = parsedProgram.mode //'pbe' or 'eval'
+  var trigger = parsedProgram.trigger //'pbe' or 'eval'
   var cursorPos = parsedProgram.cursorPos
 
 	//savefiles in hidden folder tmp
@@ -98,7 +135,7 @@ app.post('/', urlencodedParser, function(request, response){
 
   //reeval/pbe
   var res = updateCodeEvalJS(up_code, parseExamples(up_examples.trim()), path)
-  var up = parseResponse(up_code, up_examples, res, mode, cursorPos)
+  var up = parseResponse(up_code, up_examples, res, trigger, cursorPos)
 	response.send(up);
 });
 
@@ -144,6 +181,44 @@ app.get('/problems/:key', function(request, response){
 		examples: start_examples,
     samples: samples
 	}
+
+  var csvPath = logsPath + '/p'+ request.params.key + '/' + request.cookies.uCookie + '.csv'
+  var logPath = csvPath.slice(0,-4) + '.log'
+
+
+  fs.access(csvPath, fs.constants.F_OK, (err) => {
+    if(err){
+      //file missing
+      fs.writeFile(csvPath, (csvFields + newLine), (err) => {
+        if(err){
+          console.log('err:' + err)
+        }
+      })
+    }else{
+      //delete files
+      fs.unlink(csvPath, (err) => {
+        if(err){
+          console.log('err:' + err)
+        }else{
+          fs.writeFile(csvPath, (csvFields + newLine), (err) => {
+            if(err){
+              console.log('err:' + err)
+            }
+          })
+        }
+      })
+    }
+  });
+  fs.access(logPath, fs.constants.F_OK, (err) => {
+    if(err){
+      //
+    }
+    else {
+      fs.unlink(logPath, (err) => {
+        if(err){return err}
+      })
+    }
+  })
 	response.render('liveproblems', {data: data});
 
 })
@@ -161,7 +236,7 @@ app.post('/problems/:key', urlencodedParser, function(request, response){
   var parsedProgram = JSON.parse(request.body.user_program)
 	var up_code = parsedProgram.up_code
 	var up_examples = parsedProgram.up_examples
-  var mode = parsedProgram.mode //'pbe' or 'eval'
+  var trigger = parsedProgram.trigger //'pbe' or 'eval'
   var cursorPos = parsedProgram.cursorPos
 
 
@@ -171,8 +246,32 @@ app.post('/problems/:key', urlencodedParser, function(request, response){
   var path = userFolder +problem_name +'code.js.sl'
 
   var res = updateCodeEvalJS(up_code, parseExamples(up_examples.trim()), path)
-  var up = parseResponse(up_code, up_examples, res, mode, cursorPos)
-	response.send(up);
+  var up = parseResponse(up_code, up_examples, res, trigger, cursorPos)
+
+
+  var csvPath = logsPath + '/p'+ request.params.key + '/' + request.cookies.uCookie + '.csv'
+  var tStamp = Date.now()
+  var active_window = parsedProgram.active_window + " window"
+  var eval_or_pbe = (trigger.slice(-3) == 'pbe') ? 'pbe synthesis' : 'live evaluation'
+  if(up.change.slice(-5) == 'error'){
+    change_tag = 'no change'
+    success_tag = 'failure'
+  }else{
+    success_tag = 'success'
+    if(up.change == 'pbe no change'){
+      change_tag = 'no change'
+    }
+    else{
+      change_tag = up.change
+    }
+  }
+
+  var logPath = csvPath.slice(0,-4) + '.log'
+
+  //protosaveData(csvPath, tStamp, active_window, eval_or_pbe, change_tag, success_tag)
+  saveData(csvPath, logPath, tStamp, active_window, eval_or_pbe, change_tag, success_tag, trigger,
+    up_code, up_examples, up.code, up.examples)
+	response.send(up)
 });
 
 
@@ -228,7 +327,7 @@ app.post('/tutorial', urlencodedParser, function(request, response){
 	//grab text bodies
 	var up_code = parsedProgram.up_code
 	var up_examples = parsedProgram.up_examples
-  var mode = parsedProgram.mode //'pbe' or 'eval'
+  var trigger = parsedProgram.trigger //'pbe' or 'eval'
   var cursorPos = parsedProgram.cursorPos
 
 	//savefiles in hidden folder tmp
@@ -238,33 +337,32 @@ app.post('/tutorial', urlencodedParser, function(request, response){
   var path = userFolder +problem_name +'code.js.sl'
 
   var res = updateCodeEvalJS(up_code, parseExamples(up_examples.trim()), path)
-  var up = parseResponse(up_code, up_examples, res, mode, cursorPos)
+  var up = parseResponse(up_code, up_examples, res, trigger, cursorPos)
 	response.send(up);
 
 });
 
-
-
-function parseResponse(up_code, up_examples, res, mode, cursorPos){
-  if(mode == 'eval' || mode == "equal eval" || mode == "input eval"){
+function parseResponse(up_code, up_examples, res, trigger, cursorPos){
+  //possible triggers {'live code eval', 'window lost focus pbe', 'equal eval', 'newline pbe', 'changed input eval'}
+  if(trigger == 'live code eval' || trigger == "equal eval" || trigger == "changed input eval"){
     console.log('in eval')
     if (res.newExamples != null) {//eval sucess
       var up = {
         change: 'reeval',
         code: up_code,
         examples: writeExamples(res.newExamples),
-        fixCursor: ((mode == 'input eval') ? cursorPos : null)
+        fixCursor: ((trigger == 'changed input eval') ? cursorPos : null)
       }
     }else{//eval error
       var up = {
         change: 'code eval error',
         code: up_code,
         examples: up_examples,
-        fixCursor: ((mode == 'input eval') ? cursorPos : null)
+        fixCursor: ((trigger == 'changed input eval') ? cursorPos : null)
       }
     }
   }
-  else{ //mode == 'pbe' (there are only two modes)
+  else{ //trigger == 'pbe'
     console.log('in pbe')
     if (res.newCode != null && res.newCode != up_code) {//pbe success
       var up = {
@@ -290,17 +388,45 @@ function parseResponse(up_code, up_examples, res, mode, cursorPos){
   }
   return up
 }
+
 /**
   * @desc saves 2 log files, csv that is easy to parse (timestamp, active_window, change_tag, eval_or_pbe, success_tag\n),
   *       and a more detailed log file that saves current instances of program before and after processing codetith
-  *      log file format: @$timestamp $post_trigger was triggered in active window $active_window.\n
+  *      log file format: @$timestamp $post_trigger request was received in active window $active_window.\n
   *      \treceived incoming code: $incoming_code and incoming_examples $incoming_examples\n
   *      \tperformed $eval_or_pbe with $success_tag\n
-  *      \tstatus: $change_tag with outcoming code: $outcoming_code and outcoming_examples $outcoming_examples\n
-  * @param string $msg - the message to be displayed
-  * @return bool - success or failure
+  *      \tstatus: $change_tag change with outcoming code: $outcoming_code and outcoming_examples $outcoming_examples\n
+  * @param
 */
-function saveData(path, timestamp, active_window, change_tag, changed_content, eval_or_pbe, success_tag, post_trigger, prev_code, prev_examples){
+function saveData(csvPath, logPath, timestamp, active_window, eval_or_pbe, change_tag, success_tag, post_trigger, incoming_code, incoming_examples, outcoming_code, outcoming_examples)
+{
+  var appendingToLog = `@${timestamp} ${post_trigger} request was received in ${active_window}.
+    incoming code:
+    ${incoming_code}incoming_examples:
+    ${incoming_examples}
+    performed ${eval_or_pbe} with ${success_tag}.
+    status: ${(change_tag == 'no change') ? 'no change' : 'user program updated with ' + change_tag}.
+    outcoming code:
+    ${outcoming_code}outcoming_examples
+    ${outcoming_examples}\n\n`;
 
-
+  fs.appendFile(logPath, appendingToLog, function (err) {
+      if (err) throw err;
+      //console.log('The log was appended to file!');
+  });
+  var appendingData = [
+    {
+    'Timestamp' : timestamp,
+    'Active_Window' : active_window,
+    'Eval_or_PBE' : eval_or_pbe,
+    'Change_Tag' : change_tag,
+    /*'Changed_Content' : changed_content,*/
+    'Success_Tag' : success_tag
+    }
+  ]
+  var readyCSV = json2csv.parse(appendingData, {field: csvFields, header: false}) + newLine
+  fs.appendFile(csvPath, readyCSV, function (err) {
+    if (err) throw err;
+    //console.log('The "data to append" was appended to file!');
+  });
 }
