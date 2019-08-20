@@ -1,2 +1,2 @@
 #!/bin/bash
-sudo zip -r ~/data.zip ~/livecodingfrontend/tmp
+sudo zip -r ~/data_$(date +%d-%m-%Y).zip ~/livecodingfrontend/tmp
