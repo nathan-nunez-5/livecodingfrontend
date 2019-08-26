@@ -12,7 +12,7 @@ var dataPath = 'tmp'
 var logsPath = dataPath + '/logs'
 
 //csv vars
-var csvFields = ['Timestamp', 'Active_Window', 'Eval_or_PBE', 'Change_Tag', 'Changed_Content', 'Success_Tag']
+var csvFields = ['Timestamp', 'Active_Window', 'Eval_or_PBE', 'Change_Tag', /*'Changed_Content',*/ 'Success_Tag']
 var newLine = '\r\n'
 
 const port = 80
