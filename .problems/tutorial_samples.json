@@ -6,8 +6,8 @@
       "output": "4"
     },
     {
-      "input": "double(3)",
-      "output": "5"
+      "input": "double(6)",
+      "output": "12"
     }
   ]
 }
