@@ -1,4 +1,4 @@
-For this task you may use both the PBE window to leverage synthesis, as well the code window on the right to manually write code.
+For this task you may use both the PBE window to leverage synthesis, as well the code window on the left to manually write code.
 </br></br>
 Write a function which takes a single string parameter as input.
 If the length of the input string is divisible by 3,
