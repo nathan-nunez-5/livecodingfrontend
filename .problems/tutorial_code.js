@@ -7,7 +7,7 @@ function absoluteValue(x) {
 }
 
 function double(z){
-  return z + z;
+  return z * 3;
 }
 
 function concat(s1, s2){
