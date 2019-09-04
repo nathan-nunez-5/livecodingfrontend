@@ -1,13 +1,17 @@
-We will be going over the two features of the LPI.
+The LPI has two modes of operation - synthesis and reevaluation.
 
 <h4><b>Programming Synthesis</b></h4>
-To activate synthesis, try inputing one of the examples into the PBE window. There can only be one example per line, and in each the example must be formatted
-as follows
+Using the LPI in synthesis mode will cause the system to automatically generate code according to your examples.
+There can only be one example per line. For a function named foo, you must format the example as shown below:
 </br>
-f(input) =  output
+foo(input) =  output
 </br>
-Note that the examples must be formatted correctly in order for synthesis to work. Synthesis will activate once you click outside the window.
+Note that the examples must be formatted correctly in order for synthesis to work. Synthesis will activate once you click outside the window or press enter.
+
+Try inputting an example, as shown to right, to synthesize a fix to the implementation of the double function, so that the double function actually calculates twice the input.
 
 <h4><b>Programming Reevaluation</b></h3>
-To activate reevaluation change the code within the Live Coding window. Changes will appear in real-time in the example window.
-Try changing the double function to 2 more than its input
+Using the LPI reevaluation mode will cause the system to automatically update examples according to code.
+To try this, change the code within the Live Coding window when you have some examples in the PBE Window.
+Changes will then appear in real-time in the PBE Window.
+Try changing the double function to do something else.
